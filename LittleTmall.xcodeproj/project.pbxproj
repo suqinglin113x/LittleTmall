@@ -3,18 +3,23 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		664B42B4219E6E3B009F1E08 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B42B3219E6E3B009F1E08 /* AppDelegate.m */; };
-		664B42B7219E6E3B009F1E08 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B42B6219E6E3B009F1E08 /* ViewController.m */; };
 		664B42BA219E6E3B009F1E08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664B42B8219E6E3B009F1E08 /* Main.storyboard */; };
 		664B42BC219E6E3C009F1E08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 664B42BB219E6E3C009F1E08 /* Assets.xcassets */; };
 		664B42BF219E6E3C009F1E08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664B42BD219E6E3C009F1E08 /* LaunchScreen.storyboard */; };
 		664B42C2219E6E3C009F1E08 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B42C1219E6E3C009F1E08 /* main.m */; };
 		664B42CC219E6E3C009F1E08 /* LittleTmallTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B42CB219E6E3C009F1E08 /* LittleTmallTests.m */; };
 		664B42D7219E6E3C009F1E08 /* LittleTmallUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B42D6219E6E3C009F1E08 /* LittleTmallUITests.m */; };
+		664B42E7219E8AA3009F1E08 /* QLBaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B42E6219E8AA3009F1E08 /* QLBaseTabBarController.m */; };
+		664B42EB219E8BF5009F1E08 /* QLBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B42EA219E8BF5009F1E08 /* QLBaseNavigationController.m */; };
+		664B42F7219E90CA009F1E08 /* QLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B42F6219E90CA009F1E08 /* QLMainViewController.m */; };
+		664B42FA219E90DC009F1E08 /* QLCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B42F9219E90DC009F1E08 /* QLCategoryViewController.m */; };
+		664B42FD219E918C009F1E08 /* QLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B42FC219E918C009F1E08 /* QLBaseViewController.m */; };
+		DE14E1DF64B4EF314B090F42 /* libPods-LittleTmall.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 544E3723C93DCA6DA3558ACD /* libPods-LittleTmall.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,11 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		544E3723C93DCA6DA3558ACD /* libPods-LittleTmall.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LittleTmall.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		664B42AF219E6E3B009F1E08 /* LittleTmall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LittleTmall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		664B42B2219E6E3B009F1E08 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		664B42B3219E6E3B009F1E08 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		664B42B5219E6E3B009F1E08 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		664B42B6219E6E3B009F1E08 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		664B42B9219E6E3B009F1E08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		664B42BB219E6E3C009F1E08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		664B42BE219E6E3C009F1E08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +55,20 @@
 		664B42D2219E6E3C009F1E08 /* LittleTmallUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LittleTmallUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		664B42D6219E6E3C009F1E08 /* LittleTmallUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LittleTmallUITests.m; sourceTree = "<group>"; };
 		664B42D8219E6E3C009F1E08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		664B42E5219E8AA3009F1E08 /* QLBaseTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QLBaseTabBarController.h; sourceTree = "<group>"; };
+		664B42E6219E8AA3009F1E08 /* QLBaseTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QLBaseTabBarController.m; sourceTree = "<group>"; };
+		664B42E9219E8BF5009F1E08 /* QLBaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QLBaseNavigationController.h; sourceTree = "<group>"; };
+		664B42EA219E8BF5009F1E08 /* QLBaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QLBaseNavigationController.m; sourceTree = "<group>"; };
+		664B42F5219E90CA009F1E08 /* QLMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QLMainViewController.h; sourceTree = "<group>"; };
+		664B42F6219E90CA009F1E08 /* QLMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QLMainViewController.m; sourceTree = "<group>"; };
+		664B42F8219E90DC009F1E08 /* QLCategoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QLCategoryViewController.h; sourceTree = "<group>"; };
+		664B42F9219E90DC009F1E08 /* QLCategoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QLCategoryViewController.m; sourceTree = "<group>"; };
+		664B42FB219E918C009F1E08 /* QLBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QLBaseViewController.h; sourceTree = "<group>"; };
+		664B42FC219E918C009F1E08 /* QLBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QLBaseViewController.m; sourceTree = "<group>"; };
+		664B42FF219E9932009F1E08 /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
+		664B4300219E9BE9009F1E08 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		CF706C28EF97FF6CEFB79929 /* Pods-LittleTmall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LittleTmall.release.xcconfig"; path = "Pods/Target Support Files/Pods-LittleTmall/Pods-LittleTmall.release.xcconfig"; sourceTree = "<group>"; };
+		F2F506574A56FB9BA1403BE6 /* Pods-LittleTmall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LittleTmall.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LittleTmall/Pods-LittleTmall.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE14E1DF64B4EF314B090F42 /* libPods-LittleTmall.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +104,8 @@
 				664B42CA219E6E3C009F1E08 /* LittleTmallTests */,
 				664B42D5219E6E3C009F1E08 /* LittleTmallUITests */,
 				664B42B0219E6E3B009F1E08 /* Products */,
+				9B760CB29D810B1308D52601 /* Pods */,
+				F8E873428DD577189F8E4BAE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,10 +122,14 @@
 		664B42B1219E6E3B009F1E08 /* LittleTmall */ = {
 			isa = PBXGroup;
 			children = (
+				664B42F0219E8F9A009F1E08 /* Base */,
+				664B42FE219E9912009F1E08 /* OtherFiles */,
+				664B42EC219E8EB1009F1E08 /* Main */,
+				664B42EF219E8EED009F1E08 /* Category */,
+				664B42EE219E8EE1009F1E08 /* BuyCar */,
+				664B42ED219E8EC9009F1E08 /* Mine */,
 				664B42B2219E6E3B009F1E08 /* AppDelegate.h */,
 				664B42B3219E6E3B009F1E08 /* AppDelegate.m */,
-				664B42B5219E6E3B009F1E08 /* ViewController.h */,
-				664B42B6219E6E3B009F1E08 /* ViewController.m */,
 				664B42B8219E6E3B009F1E08 /* Main.storyboard */,
 				664B42BB219E6E3C009F1E08 /* Assets.xcassets */,
 				664B42BD219E6E3C009F1E08 /* LaunchScreen.storyboard */,
@@ -132,6 +157,101 @@
 			path = LittleTmallUITests;
 			sourceTree = "<group>";
 		};
+		664B42E4219E8A57009F1E08 /* BaseTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				664B42E5219E8AA3009F1E08 /* QLBaseTabBarController.h */,
+				664B42E6219E8AA3009F1E08 /* QLBaseTabBarController.m */,
+			);
+			path = BaseTabBar;
+			sourceTree = "<group>";
+		};
+		664B42E8219E8B9A009F1E08 /* BaseNavi */ = {
+			isa = PBXGroup;
+			children = (
+				664B42E9219E8BF5009F1E08 /* QLBaseNavigationController.h */,
+				664B42EA219E8BF5009F1E08 /* QLBaseNavigationController.m */,
+			);
+			path = BaseNavi;
+			sourceTree = "<group>";
+		};
+		664B42EC219E8EB1009F1E08 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				664B42F5219E90CA009F1E08 /* QLMainViewController.h */,
+				664B42F6219E90CA009F1E08 /* QLMainViewController.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		664B42ED219E8EC9009F1E08 /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		664B42EE219E8EE1009F1E08 /* BuyCar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BuyCar;
+			sourceTree = "<group>";
+		};
+		664B42EF219E8EED009F1E08 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				664B42F8219E90DC009F1E08 /* QLCategoryViewController.h */,
+				664B42F9219E90DC009F1E08 /* QLCategoryViewController.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		664B42F0219E8F9A009F1E08 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				664B42F1219E8FB1009F1E08 /* BaseController */,
+				664B42E4219E8A57009F1E08 /* BaseTabBar */,
+				664B42E8219E8B9A009F1E08 /* BaseNavi */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		664B42F1219E8FB1009F1E08 /* BaseController */ = {
+			isa = PBXGroup;
+			children = (
+				664B42FB219E918C009F1E08 /* QLBaseViewController.h */,
+				664B42FC219E918C009F1E08 /* QLBaseViewController.m */,
+			);
+			path = BaseController;
+			sourceTree = "<group>";
+		};
+		664B42FE219E9912009F1E08 /* OtherFiles */ = {
+			isa = PBXGroup;
+			children = (
+				664B4300219E9BE9009F1E08 /* PrefixHeader.pch */,
+				664B42FF219E9932009F1E08 /* Macro.h */,
+			);
+			path = OtherFiles;
+			sourceTree = "<group>";
+		};
+		9B760CB29D810B1308D52601 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F2F506574A56FB9BA1403BE6 /* Pods-LittleTmall.debug.xcconfig */,
+				CF706C28EF97FF6CEFB79929 /* Pods-LittleTmall.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F8E873428DD577189F8E4BAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				544E3723C93DCA6DA3558ACD /* libPods-LittleTmall.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,9 +259,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 664B42DB219E6E3C009F1E08 /* Build configuration list for PBXNativeTarget "LittleTmall" */;
 			buildPhases = (
+				6B9B9AC4C7E37C25B8554BBC /* [CP] Check Pods Manifest.lock */,
 				664B42AB219E6E3B009F1E08 /* Sources */,
 				664B42AC219E6E3B009F1E08 /* Frameworks */,
 				664B42AD219E6E3B009F1E08 /* Resources */,
+				A8127276D157551252F9AA03 /* [CP] Embed Pods Frameworks */,
+				AC2D73943E25B35296079447 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -194,24 +317,28 @@
 		664B42A7219E6E3B009F1E08 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = QL;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = com.qzxq;
 				TargetAttributes = {
 					664B42AE219E6E3B009F1E08 = {
 						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
 					};
 					664B42C6219E6E3C009F1E08 = {
 						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 664B42AE219E6E3B009F1E08;
 					};
 					664B42D1219E6E3C009F1E08 = {
 						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 664B42AE219E6E3B009F1E08;
 					};
 				};
 			};
 			buildConfigurationList = 664B42AA219E6E3B009F1E08 /* Build configuration list for PBXProject "LittleTmall" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -257,14 +384,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6B9B9AC4C7E37C25B8554BBC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A8127276D157551252F9AA03 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LittleTmall/Pods-LittleTmall-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC2D73943E25B35296079447 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LittleTmall/Pods-LittleTmall-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		664B42AB219E6E3B009F1E08 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				664B42B7219E6E3B009F1E08 /* ViewController.m in Sources */,
 				664B42C2219E6E3C009F1E08 /* main.m in Sources */,
 				664B42B4219E6E3B009F1E08 /* AppDelegate.m in Sources */,
+				664B42EB219E8BF5009F1E08 /* QLBaseNavigationController.m in Sources */,
+				664B42F7219E90CA009F1E08 /* QLMainViewController.m in Sources */,
+				664B42FD219E918C009F1E08 /* QLBaseViewController.m in Sources */,
+				664B42E7219E8AA3009F1E08 /* QLBaseTabBarController.m in Sources */,
+				664B42FA219E90DC009F1E08 /* QLCategoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,32 +610,40 @@
 		};
 		664B42DC219E6E3C009F1E08 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2F506574A56FB9BA1403BE6 /* Pods-LittleTmall.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HZUGWSR2YW;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LittleTmall/OtherFiles/PrefixHeader.pch";
 				INFOPLIST_FILE = LittleTmall/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qzxq.LittleTmall;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = suqinglin.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		664B42DD219E6E3C009F1E08 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF706C28EF97FF6CEFB79929 /* Pods-LittleTmall.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HZUGWSR2YW;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LittleTmall/OtherFiles/PrefixHeader.pch";
 				INFOPLIST_FILE = LittleTmall/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qzxq.LittleTmall;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = suqinglin.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -467,11 +654,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = LittleTmallTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qzxq.LittleTmallTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -485,11 +668,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = LittleTmallTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qzxq.LittleTmallTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -502,11 +681,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = LittleTmallUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qzxq.LittleTmallUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -519,11 +694,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = LittleTmallUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qzxq.LittleTmallUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
