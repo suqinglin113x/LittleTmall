@@ -19,6 +19,7 @@
 		664B42F7219E90CA009F1E08 /* QLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B42F6219E90CA009F1E08 /* QLMainViewController.m */; };
 		664B42FA219E90DC009F1E08 /* QLCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B42F9219E90DC009F1E08 /* QLCategoryViewController.m */; };
 		664B42FD219E918C009F1E08 /* QLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B42FC219E918C009F1E08 /* QLBaseViewController.m */; };
+		664B4305219EB5FD009F1E08 /* BaseNetService.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B4304219EB5FD009F1E08 /* BaseNetService.m */; };
 		DE14E1DF64B4EF314B090F42 /* libPods-LittleTmall.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 544E3723C93DCA6DA3558ACD /* libPods-LittleTmall.a */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,8 @@
 		664B42FC219E918C009F1E08 /* QLBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QLBaseViewController.m; sourceTree = "<group>"; };
 		664B42FF219E9932009F1E08 /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		664B4300219E9BE9009F1E08 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		664B4303219EB5FD009F1E08 /* BaseNetService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNetService.h; sourceTree = "<group>"; };
+		664B4304219EB5FD009F1E08 /* BaseNetService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNetService.m; sourceTree = "<group>"; };
 		CF706C28EF97FF6CEFB79929 /* Pods-LittleTmall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LittleTmall.release.xcconfig"; path = "Pods/Target Support Files/Pods-LittleTmall/Pods-LittleTmall.release.xcconfig"; sourceTree = "<group>"; };
 		F2F506574A56FB9BA1403BE6 /* Pods-LittleTmall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LittleTmall.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LittleTmall/Pods-LittleTmall.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,7 +128,7 @@
 				664B42F0219E8F9A009F1E08 /* Base */,
 				664B42FE219E9912009F1E08 /* OtherFiles */,
 				664B42EC219E8EB1009F1E08 /* Main */,
-				664B42EF219E8EED009F1E08 /* Category */,
+				664B42EF219E8EED009F1E08 /* Categories */,
 				664B42EE219E8EE1009F1E08 /* BuyCar */,
 				664B42ED219E8EC9009F1E08 /* Mine */,
 				664B42B2219E6E3B009F1E08 /* AppDelegate.h */,
@@ -157,24 +160,6 @@
 			path = LittleTmallUITests;
 			sourceTree = "<group>";
 		};
-		664B42E4219E8A57009F1E08 /* BaseTabBar */ = {
-			isa = PBXGroup;
-			children = (
-				664B42E5219E8AA3009F1E08 /* QLBaseTabBarController.h */,
-				664B42E6219E8AA3009F1E08 /* QLBaseTabBarController.m */,
-			);
-			path = BaseTabBar;
-			sourceTree = "<group>";
-		};
-		664B42E8219E8B9A009F1E08 /* BaseNavi */ = {
-			isa = PBXGroup;
-			children = (
-				664B42E9219E8BF5009F1E08 /* QLBaseNavigationController.h */,
-				664B42EA219E8BF5009F1E08 /* QLBaseNavigationController.m */,
-			);
-			path = BaseNavi;
-			sourceTree = "<group>";
-		};
 		664B42EC219E8EB1009F1E08 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,21 +183,21 @@
 			path = BuyCar;
 			sourceTree = "<group>";
 		};
-		664B42EF219E8EED009F1E08 /* Category */ = {
+		664B42EF219E8EED009F1E08 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
 				664B42F8219E90DC009F1E08 /* QLCategoryViewController.h */,
 				664B42F9219E90DC009F1E08 /* QLCategoryViewController.m */,
 			);
-			path = Category;
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		664B42F0219E8F9A009F1E08 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				664B4306219EDBA9009F1E08 /* Category */,
+				664B4301219EB5A0009F1E08 /* BaseNet */,
 				664B42F1219E8FB1009F1E08 /* BaseController */,
-				664B42E4219E8A57009F1E08 /* BaseTabBar */,
-				664B42E8219E8B9A009F1E08 /* BaseNavi */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -220,6 +205,10 @@
 		664B42F1219E8FB1009F1E08 /* BaseController */ = {
 			isa = PBXGroup;
 			children = (
+				664B42E9219E8BF5009F1E08 /* QLBaseNavigationController.h */,
+				664B42EA219E8BF5009F1E08 /* QLBaseNavigationController.m */,
+				664B42E5219E8AA3009F1E08 /* QLBaseTabBarController.h */,
+				664B42E6219E8AA3009F1E08 /* QLBaseTabBarController.m */,
 				664B42FB219E918C009F1E08 /* QLBaseViewController.h */,
 				664B42FC219E918C009F1E08 /* QLBaseViewController.m */,
 			);
@@ -229,10 +218,34 @@
 		664B42FE219E9912009F1E08 /* OtherFiles */ = {
 			isa = PBXGroup;
 			children = (
+				664B4307219EDC2E009F1E08 /* Libs */,
 				664B4300219E9BE9009F1E08 /* PrefixHeader.pch */,
 				664B42FF219E9932009F1E08 /* Macro.h */,
 			);
 			path = OtherFiles;
+			sourceTree = "<group>";
+		};
+		664B4301219EB5A0009F1E08 /* BaseNet */ = {
+			isa = PBXGroup;
+			children = (
+				664B4303219EB5FD009F1E08 /* BaseNetService.h */,
+				664B4304219EB5FD009F1E08 /* BaseNetService.m */,
+			);
+			path = BaseNet;
+			sourceTree = "<group>";
+		};
+		664B4306219EDBA9009F1E08 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		664B4307219EDC2E009F1E08 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Libs;
 			sourceTree = "<group>";
 		};
 		9B760CB29D810B1308D52601 /* Pods */ = {
@@ -443,6 +456,7 @@
 				664B42F7219E90CA009F1E08 /* QLMainViewController.m in Sources */,
 				664B42FD219E918C009F1E08 /* QLBaseViewController.m in Sources */,
 				664B42E7219E8AA3009F1E08 /* QLBaseTabBarController.m in Sources */,
+				664B4305219EB5FD009F1E08 /* BaseNetService.m in Sources */,
 				664B42FA219E90DC009F1E08 /* QLCategoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
