@@ -22,6 +22,7 @@
     
     self.view.backgroundColor = [UIColor colorWithRed:colorValue green:colorValue blue:colorValue alpha:1];
     
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 - (void)didReceiveMemoryWarning {

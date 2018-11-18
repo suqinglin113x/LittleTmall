@@ -10,7 +10,8 @@
 #import "QLBaseNavigationController.h"
 #import "QLMainViewController.h"
 #import "QLCategoryViewController.h"
-
+#import "QLBuyCarViewController.h"
+#import "QLMineViewController.h"
 
 @interface QLBaseTabBarController ()
 
@@ -47,7 +48,10 @@
     [self addChildVc:[QLMainViewController new] title:@"首页" image:@"账单点击前" selectedImage:@"账单点击后"];
     
     [self addChildVc:[QLCategoryViewController new] title:@"类目" image:@"图表点击前" selectedImage:@"图表点击后"];
+   
+    [self addChildVc:[QLBuyCarViewController new] title:@"购物车" image:@"流水点击前" selectedImage:@"流水点击后"];
     
+    [self addChildVc:[QLMineViewController new] title:@"我的" image:@"我的点击前" selectedImage:@"我的点击后"];
     
 }
 
