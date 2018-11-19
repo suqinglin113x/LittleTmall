@@ -12,6 +12,8 @@
 
 @interface QLMineViewController ()
 
+@property (nonatomic, strong) UITableView *tab;
+
 @property (nonatomic, strong) QLMineTopView *mineTopView;
 
 @property (nonatomic, strong) QLMineBottomView *mineBottomView;
@@ -26,17 +28,31 @@
     self.navigationItem.title = @"我的";
     
     // topView
-    [self.view addSubview:self.mineTopView];
+    self.tab.tableHeaderView = self.mineTopView;
     
     // bottomView
-    [self.view addSubview:self.mineBottomView];
+    UIView *fddfd = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 1000)];
+    fddfd.backgroundColor = [UIColor redColor];
+    self.tab.tableFooterView = self.mineBottomView;
+    
 }
 
 #pragma mark -- lazy --
+
+- (UITableView *)tab
+{
+    if (_tab == nil) {
+        _tab = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - kTabBarHeigth - kNavBarAndStatusBarHeight)];
+        _tab.showsVerticalScrollIndicator = NO;
+        [self.view addSubview:_tab];
+    }
+    return _tab;
+}
+
 - (QLMineTopView *)mineTopView
 {
     if (_mineTopView == nil) {
-        CGFloat mineTopViewH = 200 *kScale;
+        CGFloat mineTopViewH = 220 *kScale;
         _mineTopView = [[QLMineTopView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, mineTopViewH)];
     }
     return _mineTopView;
@@ -45,8 +61,9 @@
 - (QLMineBottomView *)mineBottomView
 {
     if (_mineBottomView == nil) {
-        CGFloat mineBottomViewH = kScreenWidth;
-        _mineBottomView = [[QLMineBottomView alloc] initWithFrame:CGRectMake(0, self.mineTopView.bottom, kScreenWidth, mineBottomViewH)];
+        _mineBottomView = [[QLMineBottomView alloc] init];
+        CGFloat mineBottomViewH = [_mineBottomView getContentHeight];
+        _mineBottomView.frame = CGRectMake(0, self.mineTopView.bottom, kScreenWidth, mineBottomViewH);
     }
     return _mineBottomView;
 }

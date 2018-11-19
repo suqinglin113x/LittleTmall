@@ -27,7 +27,7 @@
     
     NSMutableDictionary *attrsSele = [NSMutableDictionary dictionary];
     attrsSele[NSFontAttributeName] = [UIFont systemFontOfSize:12];
-    attrsSele[NSForegroundColorAttributeName] = [UIColor yellowColor];
+    attrsSele[NSForegroundColorAttributeName] = kMainColor;
     
     
     UITabBarItem *item = [UITabBarItem appearance];

@@ -27,20 +27,26 @@
 {
     self.itemBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.contentView addSubview:self.itemBtn];
-    self.itemBtn.backgroundColor = [UIColor redColor];
-    
+    [self.itemBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.itemBtn.titleLabel.font = kFont(15);
+    self.itemBtn.backgroundColor = [UIColor clearColor];
+    self.itemBtn.enabled = NO;
     
 }
 
 - (void)layoutSubviews
 {
-    self.itemBtn.frame = CGRectMake(0, 0, self.width *0.5, self.width *0.7);
+    [super layoutSubviews];
+    self.itemBtn.frame = self.contentView.frame;
     // 必须加载contenView上
     self.itemBtn.center = self.contentView.center;
+    [self.itemBtn setTitleEdgeInsets:UIEdgeInsetsMake(0 *kScale, -self.itemBtn.imageView.width, -self.itemBtn.imageView.height -15, 0)];
+    [self.itemBtn setImageEdgeInsets:UIEdgeInsetsMake(-self.itemBtn.titleLabel.height - 15, 0, 0, -self.itemBtn.titleLabel.width)];
 }
 
 - (void)setTitleStr:(NSString *)titleStr
 {
     [self.itemBtn setTitle:titleStr forState:UIControlStateNormal];
+    [self.itemBtn setImage:[UIImage imageNamed:@"购物车"] forState:UIControlStateNormal];
 }
 @end

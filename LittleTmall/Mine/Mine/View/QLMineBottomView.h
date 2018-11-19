@@ -12,8 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface QLMineBottomView : UIView
 
+@property (nonatomic, strong) UICollectionView *collectionView;
+
 @property (nonatomic, copy) NSArray *itemsArray;
 
+- (CGFloat) getContentHeight;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -36,41 +36,42 @@
     return objc_getAssociatedObject(self, @"no_dele");
 }
 
-
+/** 展示暂无数据页面*/
 - (void)showNoDataViewImg:(NSString *)imageName text:(NSString *)hint btn:(NSString *)btnTitle
 {
     
     self.noDataV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, self.height)];
-    self.noDataV.backgroundColor = [UIColor whiteColor];
+    self.noDataV.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self addSubview:self.noDataV];
     
     UIButton *imageView = [[UIButton alloc] init];
-    imageView.frame = CGRectMake(0, self.bounds.size.height *0.3, 60, 60);
+    imageView.frame = CGRectMake(0, self.bounds.size.height *0.3, 30, 30);
     imageView.centerX = self.noDataV.centerX;
-    [imageView setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    [imageView setBackgroundImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     [self.noDataV addSubview:imageView];
     
     UILabel *aRowSmallText = [[UILabel alloc] init];
     aRowSmallText.text = hint;
     aRowSmallText.textAlignment = 1;
-    aRowSmallText.frame = CGRectMake(0, imageView.bottom + 10 *kScale, 300, 30);
+    aRowSmallText.frame = CGRectMake(0, imageView.bottom + 15 *kScale, 300, 30);
     aRowSmallText.centerX = self.centerX;
     aRowSmallText.font = [UIFont systemFontOfSize:14 *kScale];
     aRowSmallText.textColor = UIColorFromHex(0x999999);
     [self.noDataV addSubview:aRowSmallText];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, aRowSmallText.bottom + 30 *kScale, 170  *kScale, 40 *kScale);
+    btn.frame = CGRectMake(0, aRowSmallText.bottom + 15 *kScale, 170  *kScale, 40 *kScale);
     btn.centerX = self.centerX;
     [btn setTitle:btnTitle forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn.titleLabel setFont:[UIFont systemFontOfSize:16 *kScale]];
-    btn.layer.cornerRadius = 4;
+    btn.layer.cornerRadius = 4 *kScale;
     [btn addTarget:self action:@selector(noDataBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    btn.backgroundColor = kMainColor;
+    btn.backgroundColor = [UIColor redColor];
     [self.noDataV addSubview:btn];
 }
 
+/** 隐藏暂无数据页面*/
 - (void)hideNoDataView
 {
     if (self.noDataV) {

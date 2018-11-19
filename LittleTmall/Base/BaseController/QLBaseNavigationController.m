@@ -16,10 +16,10 @@
 
 + (void)initialize {
     UINavigationBar *navBar = [UINavigationBar appearance];
-    navBar.tintColor = [UIColor redColor];
-    navBar.barTintColor = kMainColor;
+    navBar.barTintColor = [UIColor whiteColor];
+    navBar.tintColor = [UIColor blackColor];
     navBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor],
-                                   NSFontAttributeName : [UIFont systemFontOfSize:17]
+                                   NSFontAttributeName : [UIFont systemFontOfSize:17 *kScale]
                                    };
     
     
@@ -38,7 +38,7 @@
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     
     if (self.childViewControllers.count >= 1) {
-        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(back)];
+        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
         viewController.hidesBottomBarWhenPushed = YES;
     }
     
