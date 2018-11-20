@@ -10,7 +10,20 @@
 
 @interface QLCarBottomBar : UIView
 
+@property (nonatomic, weak) UIButton *tickImgBtn;
+
+@property (nonatomic, weak) UIButton *tickAllBtn;
+
+@property (nonatomic, weak) UILabel *allMoneyL;
+
+@property (nonatomic, weak) UIButton *editBtn;
+
+@property (nonatomic, weak) UIButton *buyBtn;
+
+
 @property (nonatomic, copy) void(^chooseAllBlock)(BOOL isSelected);
+
+@property (nonatomic, copy) void(^editBlock)(BOOL isSelected);
 
 @property (nonatomic, copy) NSArray *dataArr;
 @end

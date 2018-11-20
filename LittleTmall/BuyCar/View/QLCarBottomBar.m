@@ -9,15 +9,7 @@
 #import "QLCarBottomBar.h"
 
 @interface QLCarBottomBar ()
-@property (nonatomic, weak) UIButton *tickImgBtn;
 
-@property (nonatomic, weak) UIButton *tickAllBtn;
-
-@property (nonatomic, weak) UILabel *allMoneyL;
-
-@property (nonatomic, weak) UIButton *editBtn;
-
-@property (nonatomic, weak) UIButton *buyBtn;
 @end
 @implementation QLCarBottomBar
 
@@ -48,7 +40,7 @@
     self.tickAllBtn = tickAllBtn;
     tickAllBtn.titleLabel.font = kFont(13);
     [tickAllBtn setTitle:@"全选(0)" forState:UIControlStateNormal];
-    [tickAllBtn setTitle:@"全选(100)" forState:UIControlStateSelected];
+//    [tickAllBtn setTitle:@"全选(100)" forState:UIControlStateNormal];
     [tickAllBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [tickAllBtn addTarget:self action:@selector(chooseAll:) forControlEvents:UIControlEventTouchUpInside];
    
@@ -92,7 +84,7 @@
     self.tickImgBtn.centerY = subviewsH *0.5;
     self.tickImgBtn.layer.cornerRadius = self.tickImgBtn.width *0.5;
     
-    self.tickAllBtn.frame = CGRectMake(self.tickImgBtn.right - 5 *kScale, 0, 80 *kScale, subviewsH);
+    self.tickAllBtn.frame = CGRectMake(self.tickImgBtn.right, 0, 80 *kScale, subviewsH);
     self.tickAllBtn.centerY = subviewsH *0.5;
     
     self.allMoneyL.frame = CGRectMake(self.tickAllBtn.right, 0, 150 *kScale, subviewsH);
@@ -110,9 +102,12 @@
 #pragma mark -- action --
 - (void)chooseAll:(UIButton *)btn
 {
+    btn.selected = self.tickImgBtn.selected;
     btn.selected = !btn.selected;
     self.tickAllBtn.selected = self.tickImgBtn.selected = btn.selected;
-
+    if (btn.selected) {
+       
+    }
     // 计算总金额
     
     // 全选操作
@@ -128,8 +123,12 @@
     self.buyBtn.selected = btn.selected;
     if (btn.selected) {
         [self.buyBtn setTitle:@"删除所选" forState:UIControlStateNormal];
+        
     } else {
         [self.buyBtn setTitle:@"去结算" forState:UIControlStateNormal];
+    }
+    if (self.editBlock) {
+        self.editBlock(btn.selected);
     }
     QLLog(@"编辑商品");
 }
@@ -151,6 +150,8 @@
 - (void)setDataArr:(NSArray *)dataArr
 {
     _dataArr = dataArr;
+    [self.tickAllBtn setTitle:[NSString stringWithFormat:@"全选(%lu)", (unsigned long)dataArr.count] forState:UIControlStateNormal];
+    self.allMoneyL.text = [NSString stringWithFormat:@"¥%d", dataArr.count];
     
 }
 @end

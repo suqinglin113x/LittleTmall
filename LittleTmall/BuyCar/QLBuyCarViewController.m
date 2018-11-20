@@ -17,18 +17,31 @@
 @property (nonatomic, strong) UITableView *tabView;
 @property (nonatomic, strong) QLCarBottomBar *bottomBar;
 @property (nonatomic, strong) NSMutableArray *dataSource;
-@property (strong, nonatomic) NSMutableArray *deleteArr;
+// 存放购买的商品
+@property (strong, nonatomic) NSMutableArray *resultBuyArr;
+// 存放删除的商品
+@property (strong, nonatomic) NSMutableArray *resultDelArr;
 
+@property (assign, nonatomic) BOOL isEditing;
 @end
 
 @implementation QLBuyCarViewController
 
+- (void)addHeadTipView
+{
+    UILabel *view = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 35)];
+    view.text = @"阿加隆的厚厚的费";
+    view.backgroundColor = kBgColor;
+    self.tabView.tableHeaderView = view;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"购物车";
     
     [self.view addSubview:self.tabView];
+    
+    [self addHeadTipView];
     
     if (self.dataSource.count) {
         [self.tabView reloadData];
@@ -40,32 +53,89 @@
     // 底部工具条
     [self.view addSubview:self.bottomBar];
     
+    //  添加 resultBuyArr
+    [self addObserver:self forKeyPath:@"self.resultBuyArr" options:NSKeyValueObservingOptionNew context:nil];
+    [self addObserver:self forKeyPath:@"self.resultDelArr" options:NSKeyValueObservingOptionNew context:nil];
     
-    // 全选
+    [self dealChooseAllBlock];
+    
+    
+    [self dealEditBlock];
+    
+}
+//MARK: 全选
+- (void)dealChooseAllBlock
+{
     MJWeakSelf
     self.bottomBar.chooseAllBlock = ^(BOOL isSelected){
         QLLog(@"执行全选操作");
+        
         if (isSelected) {
-            // 全选中
-            [weakSelf.deleteArr addObjectsFromArray:weakSelf.dataSource];
-            for (NSInteger i = 0; i < weakSelf.dataSource.count; i ++) {
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                [weakSelf.tabView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-                
+            if (weakSelf.isEditing) {// 编辑状态下
+                [weakSelf.resultDelArr removeAllObjects];
+                [weakSelf dealselectRowArrName:@"resultDelArr"];
+            } else {
+                [weakSelf.resultBuyArr removeAllObjects];
+                [weakSelf dealselectRowArrName:@"resultBuyArr"];
             }
-            weakSelf.bottomBar.dataArr = weakSelf.dataSource;
+            
         } else {
             // 全部取消选中
-            [weakSelf.deleteArr removeAllObjects];
-            for (NSInteger i = 0; i < weakSelf.dataSource.count; i ++) {
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                [weakSelf.tabView deselectRowAtIndexPath:indexPath animated:NO];
+            if (weakSelf.isEditing) {
+                [weakSelf dealDeselectRowArrName:@"resultDelArr"];
+            } else {
+                [weakSelf dealDeselectRowArrName:@"resultBuyArr"];
             }
         }
-        
     };
 }
-
+/** 全选中*/
+- (void)dealselectRowArrName:(NSString *)arrName
+{
+    MJWeakSelf
+    for (NSInteger i = 0; i < weakSelf.dataSource.count; i ++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        [weakSelf.tabView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        
+        // 数组必须保存对应的indePath
+        [[weakSelf mutableArrayValueForKey:arrName] addObject:@(indexPath.row)];
+    }
+}
+/** 反选*/
+- (void)dealDeselectRowArrName:(NSString *)arrName
+{
+    MJWeakSelf
+    [[self mutableArrayValueForKey:arrName] removeAllObjects];
+    for (NSInteger i = 0; i < weakSelf.dataSource.count; i ++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        [self.tabView deselectRowAtIndexPath:indexPath animated:NO];
+    }
+}
+//MARK: 编辑
+- (void)dealEditBlock
+{
+    MJWeakSelf
+    self.bottomBar.editBlock = ^(BOOL isSelected) {
+        
+        [weakSelf.tabView reloadData];
+        weakSelf.isEditing = isSelected;
+        
+        if (isSelected) {
+            //全部取消选中(默认)
+            [weakSelf dealDeselectRowArrName:@"resultDelArr"];
+            weakSelf.resultDelArr = [NSMutableArray array];
+        } else {
+            // 重新选择购买的
+            for (NSInteger i = 0; i < weakSelf.resultBuyArr.count; i ++) {
+                NSInteger row = [weakSelf.resultBuyArr[i] integerValue];
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+                [weakSelf.tabView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            }
+            // 重新赋值
+            weakSelf.resultBuyArr = weakSelf.resultBuyArr;;
+        }
+    };
+}
 #pragma mark -- datesource &&  delegate --
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -74,31 +144,63 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"QLCarBuyCell";
-    QLCarBuyCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    QLCarBuyCell *  cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[QLCarBuyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = self.dataSource[indexPath.row];
+    
+    [cell cellEditingStatus:self.isEditing];
+    cell.productStr = self.dataSource[indexPath.row];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 82;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.deleteArr addObject:[self.dataSource objectAtIndex:indexPath.row]];
+    QLLog(@"点击的cell：%ld", (long)indexPath.row);
+    
+    if (_isEditing) {
+        [[self mutableArrayValueForKey:@"resultDelArr"] addObject:@(indexPath.row)];
+    } else {
+        [[self mutableArrayValueForKey:@"resultBuyArr"] addObject:@(indexPath.row)];
+    }
 }
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.deleteArr removeObject:[self.dataSource objectAtIndex:indexPath.row]];
+    if (_isEditing) {
+         [[self mutableArrayValueForKey:@"resultDelArr"] removeObject:@(indexPath.row)];
+    } else {
+         [[self mutableArrayValueForKey:@"resultBuyArr"] removeObject:@(indexPath.row)];
+    }
+   
 }
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
 }
 
+#pragma mark -- observe ---
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"self.resultBuyArr"]) {
+        self.bottomBar.dataArr = self.resultBuyArr;
+        if (self.resultBuyArr.count != self.dataSource.count) {
+            self.bottomBar.tickImgBtn.selected = NO;
+        } else {
+            self.bottomBar.tickImgBtn.selected = YES;
+        }
+    } else if([keyPath isEqualToString:@"self.resultDelArr"]) {
+        self.bottomBar.dataArr = self.resultDelArr;
+        if (self.resultDelArr.count != self.dataSource.count) {
+            self.bottomBar.tickImgBtn.selected = NO;
+        } else {
+            self.bottomBar.tickImgBtn.selected = YES;
+        }
+    }
+}
 
 #pragma mark -- lazy --
 - (UITableView *)tabView
@@ -127,16 +229,29 @@
     if (_dataSource == nil) {
         _dataSource = [NSMutableArray array];
         for (NSInteger i = 1; i <= 20; i++) {
-            [_dataSource addObject:[NSString stringWithFormat:@"商品%02ld", i]];
+            [_dataSource addObject:[NSString stringWithFormat:@"打两节课的价位大%02ld", (long)i]];
         }
     }
     return _dataSource;
 }
-- (NSMutableArray *)deleteArr
+- (NSMutableArray *)resultBuyArr
 {
-    if (_deleteArr == nil) {
-        _deleteArr = [NSMutableArray array];
+    if (_resultBuyArr == nil) {
+        _resultBuyArr = [NSMutableArray array];
     }
-    return _deleteArr;
+    return _resultBuyArr;
+}
+- (NSMutableArray *)resultDelArr
+{
+    if (_resultDelArr == nil) {
+        _resultDelArr = [NSMutableArray array];
+        _resultDelArr = [NSMutableArray array];
+    }
+    return _resultDelArr;
+}
+
+-(void)dealloc{
+    [self removeObserver:self forKeyPath:@"resultBuyArr"];
+    [self removeObserver:self forKeyPath:@"resultDelArr"];
 }
 @end
