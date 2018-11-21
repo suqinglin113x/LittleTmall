@@ -1,5 +1,5 @@
 //
-//  QLMineTopView.h
+//  DBMineTopView.h
 //  LittleTmall
 //
 //  Created by 苏庆林 on 2018/11/17.
@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)headImageVClick;
 
 @end
-@interface QLMineTopView : UIView
+@interface DBMineTopView : UIView
 
 @end
 

@@ -1,27 +1,27 @@
 //
-//  QLMineBottomView.m
+//  DBMineBottomView.m
 //  LittleTmall
 //
 //  Created by 苏庆林 on 2018/11/17.
 //  Copyright © 2018年 com.qzxq. All rights reserved.
 //
 
-#import "QLMineBottomView.h"
-#import "QLMineBottomCell.h"
+#import "DBMineBottomView.h"
+#import "DBMineBottomCell.h"
 
 #define linMargin 1 *kScale
 #define topMargin 10 *kScale
 #define itemW (kScreenWidth - linMargin *2) /3
 #define itemH 93 *kScale
 
-@interface QLMineBottomView ()<UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface DBMineBottomView ()<UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, copy) NSArray *temArr;
 
 @end
-@implementation QLMineBottomView
+@implementation DBMineBottomView
 
-static NSString *const Mine_BottomCell = @"QLMineBottomCell";
+static NSString *const Mine_BottomCell = @"DBMineBottomCell";
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -57,7 +57,7 @@ static NSString *const Mine_BottomCell = @"QLMineBottomCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    QLMineBottomCell *cell = (QLMineBottomCell *)[collectionView dequeueReusableCellWithReuseIdentifier:Mine_BottomCell forIndexPath:indexPath];
+    DBMineBottomCell *cell = (DBMineBottomCell *)[collectionView dequeueReusableCellWithReuseIdentifier:Mine_BottomCell forIndexPath:indexPath];
     cell.backgroundColor = [UIColor whiteColor];
     cell.titleStr = _temArr[indexPath.row];
     return cell;
@@ -65,7 +65,9 @@ static NSString *const Mine_BottomCell = @"QLMineBottomCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"当前点击cell：%ld", indexPath.row);
+    if (self.delegate && [self.delegate respondsToSelector:@selector(bottomItemClick:)]) {
+        [self.delegate bottomItemClick:indexPath.row];
+    }
 }
 
 #pragma mark -- lazy --
@@ -82,7 +84,7 @@ static NSString *const Mine_BottomCell = @"QLMineBottomCell";
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         _collectionView.scrollEnabled = NO;
-        [_collectionView registerClass:[QLMineBottomCell class] forCellWithReuseIdentifier:Mine_BottomCell];
+        [_collectionView registerClass:[DBMineBottomCell class] forCellWithReuseIdentifier:Mine_BottomCell];
         _collectionView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         
     }

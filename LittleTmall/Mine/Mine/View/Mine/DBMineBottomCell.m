@@ -1,19 +1,19 @@
 //
-//  QLMineBottomCell.m
+//  DBMineBottomCell.m
 //  LittleTmall
 //
 //  Created by 苏庆林 on 2018/11/17.
 //  Copyright © 2018年 com.qzxq. All rights reserved.
 //
 
-#import "QLMineBottomCell.h"
+#import "DBMineBottomCell.h"
 
-@interface QLMineBottomCell()
+@interface DBMineBottomCell()
 
 @property (nonatomic, strong) UIButton *itemBtn;
 
 @end
-@implementation QLMineBottomCell
+@implementation DBMineBottomCell
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

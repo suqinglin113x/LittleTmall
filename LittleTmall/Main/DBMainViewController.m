@@ -1,19 +1,19 @@
 //
-//  QLMainViewController.m
+//  DBMainViewController.m
 //  LittleTmall
 //
 //  Created by Adam on 2018/11/16.
 //  Copyright © 2018年 com.qzxq. All rights reserved.
 //
 
-#import "QLMainViewController.h"
-#import "QLCategoryViewController.h"
+#import "DBMainViewController.h"
+#import "DBCategoryViewController.h"
 
-@interface QLMainViewController ()
+@interface DBMainViewController ()
 
 @end
 
-@implementation QLMainViewController
+@implementation DBMainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,7 +25,7 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self.navigationController pushViewController:[QLCategoryViewController new] animated:YES];
+    [self.navigationController pushViewController:[DBCategoryViewController new] animated:YES];
     
     
     

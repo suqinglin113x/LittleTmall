@@ -1,18 +1,18 @@
 //
-//  QLBaseNavigationController.m
+//  DBBaseNavigationController.m
 //  LittleTmall
 //
 //  Created by Adam on 2018/11/16.
 //  Copyright © 2018年 com.qzxq. All rights reserved.
 //
 
-#import "QLBaseNavigationController.h"
+#import "DBBaseNavigationController.h"
 
-@interface QLBaseNavigationController ()<UIGestureRecognizerDelegate>
+@interface DBBaseNavigationController ()<UIGestureRecognizerDelegate>
 
 @end
 
-@implementation QLBaseNavigationController
+@implementation DBBaseNavigationController
 
 + (void)initialize {
     UINavigationBar *navBar = [UINavigationBar appearance];

@@ -1,23 +1,23 @@
 //
-//  QLBaseTabBarController.m
+//  DBBaseTabBarController.m
 //  LittleTmall
 //
 //  Created by Adam on 2018/11/16.
 //  Copyright © 2018年 com.qzxq. All rights reserved.
 //
 
-#import "QLBaseTabBarController.h"
-#import "QLBaseNavigationController.h"
-#import "QLMainViewController.h"
-#import "QLCategoryViewController.h"
-#import "QLBuyCarViewController.h"
-#import "QLMineViewController.h"
+#import "DBBaseTabBarController.h"
+#import "DBBaseNavigationController.h"
+#import "DBMainViewController.h"
+#import "DBCategoryViewController.h"
+#import "DBBuyCarViewController.h"
+#import "DBMineViewController.h"
 
-@interface QLBaseTabBarController ()
+@interface DBBaseTabBarController ()
 
 @end
 
-@implementation QLBaseTabBarController
+@implementation DBBaseTabBarController
 
 + (void)initialize
 {
@@ -45,19 +45,19 @@
 /** add childVCs*/
 - (void)SetupAllControllers {
     
-    [self addChildVc:[QLMainViewController new] title:@"首页" image:@"账单点击前" selectedImage:@"账单点击后"];
+    [self addChildVc:[DBMainViewController new] title:@"首页" image:@"账单点击前" selectedImage:@"账单点击后"];
     
-    [self addChildVc:[QLCategoryViewController new] title:@"类目" image:@"图表点击前" selectedImage:@"图表点击后"];
+    [self addChildVc:[DBCategoryViewController new] title:@"类目" image:@"图表点击前" selectedImage:@"图表点击后"];
    
-    [self addChildVc:[QLBuyCarViewController new] title:@"购物车" image:@"流水点击前" selectedImage:@"流水点击后"];
+    [self addChildVc:[DBBuyCarViewController new] title:@"购物车" image:@"流水点击前" selectedImage:@"流水点击后"];
     
-    [self addChildVc:[QLMineViewController new] title:@"我的" image:@"我的点击前" selectedImage:@"我的点击后"];
+    [self addChildVc:[DBMineViewController new] title:@"我的" image:@"我的点击前" selectedImage:@"我的点击后"];
     
 }
 
 - (void)addChildVc:(UIViewController *)childVc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage
 {
-    QLBaseNavigationController *navi = [[QLBaseNavigationController alloc] initWithRootViewController:childVc];
+    DBBaseNavigationController *navi = [[DBBaseNavigationController alloc] initWithRootViewController:childVc];
     childVc.tabBarItem.title = title;
     childVc.tabBarItem.image = [[UIImage imageNamed:image] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     childVc.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

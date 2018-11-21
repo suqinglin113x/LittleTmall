@@ -1,21 +1,20 @@
 //
-//  QLBuyCarViewController.m
+//  DBBuyCarViewController.m
 //  LittleTmall
 //
 //  Created by 苏庆林 on 2018/11/16.
 //  Copyright © 2018年 com.qzxq. All rights reserved.
 //
 
-#import "QLBuyCarViewController.h"
-#import "UITableView+EmptyDataView.h"
-#import "QLCarBottomBar.h"
-#import "QLCarBuyCell.h"
+#import "DBBuyCarViewController.h"
+#import "DBCarBottomBar.h"
+#import "DBCarBuyCell.h"
 
 #define barHei  50 *kScale
 
-@interface QLBuyCarViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface DBBuyCarViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tabView;
-@property (nonatomic, strong) QLCarBottomBar *bottomBar;
+@property (nonatomic, strong) DBCarBottomBar *bottomBar;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 // 存放购买的商品
 @property (strong, nonatomic) NSMutableArray *resultBuyArr;
@@ -25,7 +24,7 @@
 @property (assign, nonatomic) BOOL isEditing;
 @end
 
-@implementation QLBuyCarViewController
+@implementation DBBuyCarViewController
 
 - (void)addHeadTipView
 {
@@ -46,8 +45,8 @@
     if (self.dataSource.count) {
         [self.tabView reloadData];
     } else {
+        [self.tabView showNoDataViewImg:@"购物车" hintText:@"购物车空空如也~" btnTitle:@"去逛逛"];
         self.tabView.tableFooterView = [UIView new];
-        [self.tabView showNoDataViewImg:@"购物车" text:@"购物车空空如也~" btn:@"去逛逛"];
     }
     
     // 底部工具条
@@ -68,7 +67,7 @@
 {
     MJWeakSelf
     self.bottomBar.chooseAllBlock = ^(BOOL isSelected){
-        QLLog(@"执行全选操作");
+        DBLog(@"执行全选操作");
         
         if (isSelected) {
             if (weakSelf.isEditing) {// 编辑状态下
@@ -143,10 +142,10 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"QLCarBuyCell";
-    QLCarBuyCell *  cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    static NSString *cellIdentifier = @"DBCarBuyCell";
+    DBCarBuyCell *  cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[QLCarBuyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[DBCarBuyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
     [cell cellEditingStatus:self.isEditing];
@@ -160,7 +159,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    QLLog(@"点击的cell：%ld", (long)indexPath.row);
+    DBLog(@"点击的cell：%ld", (long)indexPath.row);
     
     if (_isEditing) {
         [[self mutableArrayValueForKey:@"resultDelArr"] addObject:@(indexPath.row)];
@@ -210,16 +209,15 @@
         _tabView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight - kNavBarAndStatusBarHeight - kTabBarHeigth - barHei);
         _tabView.dataSource = self;
         _tabView.delegate = self;
-        
         _tabView.editing = YES;
     }
     return _tabView;
 }
 
-- (QLCarBottomBar *)bottomBar
+- (DBCarBottomBar *)bottomBar
 {
     if (_bottomBar == nil) {
-        _bottomBar = [[QLCarBottomBar alloc] initWithFrame:CGRectMake(0, kScreenHeight - kNavBarAndStatusBarHeight - barHei - kTabBarHeigth, kScreenWidth, barHei)];
+        _bottomBar = [[DBCarBottomBar alloc] initWithFrame:CGRectMake(0, kScreenHeight - kNavBarAndStatusBarHeight - barHei - kTabBarHeigth, kScreenWidth, barHei)];
     }
     return _bottomBar;
 }

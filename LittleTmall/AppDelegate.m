@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "QLBaseTabBarController.h"
+#import "DBBaseTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -21,10 +21,11 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-    QLBaseTabBarController *tabBarVC = [QLBaseTabBarController new];
+    DBBaseTabBarController *tabBarVC = [DBBaseTabBarController new];
     self.window.rootViewController = tabBarVC;
     [self.window makeKeyAndVisible];
     
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     
     return YES;
 }

@@ -1,17 +1,17 @@
 //
-//  QLCarBottomBar.m
+//  DBCarBottomBar.m
 //  LittleTmall
 //
 //  Created by Adam on 2018/11/19.
 //  Copyright © 2018年 com.qzxq. All rights reserved.
 //
 
-#import "QLCarBottomBar.h"
+#import "DBCarBottomBar.h"
 
-@interface QLCarBottomBar ()
+@interface DBCarBottomBar ()
 
 @end
-@implementation QLCarBottomBar
+@implementation DBCarBottomBar
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -130,18 +130,18 @@
     if (self.editBlock) {
         self.editBlock(btn.selected);
     }
-    QLLog(@"编辑商品");
+    DBLog(@"编辑商品");
 }
 
 - (void)buyBtnClick:(UIButton *)btn
 {
     if (self.buyBtn.selected) {
         
-        QLLog(@"删除所选");
+        DBLog(@"删除所选");
         // 去删除
         
     } else {
-        QLLog(@"结算");
+        DBLog(@"结算");
     }
     
 }

@@ -1,17 +1,17 @@
 //
-//  QLCarBuyCell.m
+//  DBCarBuyCell.m
 //  LittleTmall
 //
 //  Created by Adam on 2018/11/19.
 //  Copyright © 2018年 com.qzxq. All rights reserved.
 //
 
-#import "QLCarBuyCell.h"
+#import "DBCarBuyCell.h"
 
-@interface QLCarBuyCell()
+@interface DBCarBuyCell()
 @property (nonatomic, strong) UIView *amountPickView;
 @end
-@implementation QLCarBuyCell
+@implementation DBCarBuyCell
 
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -91,6 +91,7 @@
 
 - (void)layoutSubviews
 {
+    [super layoutSubviews];
     self.productImgV.frame = CGRectMake(10, 10, 60, 60);
     self.productName.frame = CGRectMake(self.productImgV.right +10, self.productImgV.top, 200, 30);
     self.priceL.frame = CGRectMake(self.productImgV.right + 10, self.contentView.bottom - 40, 60, 30);
@@ -106,7 +107,6 @@
     self.plusBtn.frame = CGRectMake(minusBtnW *2, 0, minusBtnW, minusBtnH);
     
     [self dealCellEditingStatus];
-    [super layoutSubviews];
 }
 
 - (void)setProductStr:(NSString *)productStr

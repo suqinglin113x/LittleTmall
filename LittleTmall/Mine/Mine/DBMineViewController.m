@@ -1,26 +1,27 @@
 //
-//  QLMineViewController.m
+//  DBMineViewController.m
 //  LittleTmall
 //
 //  Created by 苏庆林 on 2018/11/16.
 //  Copyright © 2018年 com.qzxq. All rights reserved.
 //
 
-#import "QLMineViewController.h"
-#import "QLMineTopView.h"
-#import "QLMineBottomView.h"
+#import "DBMineViewController.h"
+#import "DBMineTopView.h"
+#import "DBMineBottomView.h"
+#import "DBAddressListController.h"
 
-@interface QLMineViewController ()
+@interface DBMineViewController ()<DBMineBottomViewDelegate>
 
 @property (nonatomic, strong) UITableView *tab;
 
-@property (nonatomic, strong) QLMineTopView *mineTopView;
+@property (nonatomic, strong) DBMineTopView *mineTopView;
 
-@property (nonatomic, strong) QLMineBottomView *mineBottomView;
+@property (nonatomic, strong) DBMineBottomView *mineBottomView;
 
 @end
 
-@implementation QLMineViewController
+@implementation DBMineViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,6 +38,16 @@
     
 }
 
+#pragma mark -- DBMineBottomViewDelegate --
+ - (void)bottomItemClick:(NSInteger)currentIndex
+{
+    DBLog(@"当前点击的item:%ld", currentIndex);
+    if (currentIndex == 4) {
+        DBAddressListController *addressVC = [DBAddressListController new];
+        [self.navigationController pushViewController:addressVC animated:YES];
+    }
+}
+
 #pragma mark -- lazy --
 
 - (UITableView *)tab
@@ -49,21 +60,22 @@
     return _tab;
 }
 
-- (QLMineTopView *)mineTopView
+- (DBMineTopView *)mineTopView
 {
     if (_mineTopView == nil) {
         CGFloat mineTopViewH = 220 *kScale;
-        _mineTopView = [[QLMineTopView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, mineTopViewH)];
+        _mineTopView = [[DBMineTopView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, mineTopViewH)];
     }
     return _mineTopView;
 }
 
-- (QLMineBottomView *)mineBottomView
+- (DBMineBottomView *)mineBottomView
 {
     if (_mineBottomView == nil) {
-        _mineBottomView = [[QLMineBottomView alloc] init];
+        _mineBottomView = [[DBMineBottomView alloc] init];
         CGFloat mineBottomViewH = [_mineBottomView getContentHeight];
         _mineBottomView.frame = CGRectMake(0, self.mineTopView.bottom, kScreenWidth, mineBottomViewH);
+        _mineBottomView.delegate = self;
     }
     return _mineBottomView;
 }

@@ -1,5 +1,5 @@
 //
-//  QLCarBottomBar.h
+//  DBCarBottomBar.h
 //  LittleTmall
 //
 //  Created by Adam on 2018/11/19.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QLCarBottomBar : UIView
+@interface DBCarBottomBar : UIView
 
 @property (nonatomic, weak) UIButton *tickImgBtn;
 

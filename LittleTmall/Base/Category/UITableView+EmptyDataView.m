@@ -37,7 +37,7 @@
 }
 
 /** 展示暂无数据页面*/
-- (void)showNoDataViewImg:(NSString *)imageName text:(NSString *)hint btn:(NSString *)btnTitle
+- (void)showNoDataViewImg:(NSString *)imageName hintText:(NSString *)hint btnTitle:(NSString *)btnTitle
 {
     
     self.noDataV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, self.height)];
@@ -45,7 +45,7 @@
     [self addSubview:self.noDataV];
     
     UIButton *imageView = [[UIButton alloc] init];
-    imageView.frame = CGRectMake(0, self.bounds.size.height *0.3, 30, 30);
+    imageView.frame = CGRectMake(0, self.bounds.size.height *0.3, 50, 50);
     imageView.centerX = self.noDataV.centerX;
     [imageView setBackgroundImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     [self.noDataV addSubview:imageView];
@@ -68,7 +68,9 @@
     btn.layer.cornerRadius = 4 *kScale;
     [btn addTarget:self action:@selector(noDataBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     btn.backgroundColor = [UIColor redColor];
-    [self.noDataV addSubview:btn];
+    if (btnTitle.length != 0) {
+        [self.noDataV addSubview:btn];
+    }
 }
 
 /** 隐藏暂无数据页面*/
@@ -82,7 +84,7 @@
 
 - (void)noDataBtnClick:(UIButton *)btn
 {
-    QLLog(@"%s", __func__);
+    DBLog(@"%s", __func__);
     if ([self.no_delegate respondsToSelector:@selector(noDataViewClick)]) {
         [self.no_delegate noDataViewClick];
     }

@@ -1,5 +1,5 @@
 //
-//  QLMineBottomCell.h
+//  DBMineBottomCell.h
 //  LittleTmall
 //
 //  Created by 苏庆林 on 2018/11/17.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface QLMineBottomCell : UICollectionViewCell
+@interface DBMineBottomCell : UICollectionViewCell
 
 @property (nonatomic, copy) NSString *titleStr;
 

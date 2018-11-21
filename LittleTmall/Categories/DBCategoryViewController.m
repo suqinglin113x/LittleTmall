@@ -1,18 +1,18 @@
 //
-//  QLCategoryViewController.m
+//  DBCategoryViewController.m
 //  LittleTmall
 //
 //  Created by Adam on 2018/11/16.
 //  Copyright © 2018年 com.qzxq. All rights reserved.
 //
 
-#import "QLCategoryViewController.h"
+#import "DBCategoryViewController.h"
 
-@interface QLCategoryViewController ()
+@interface DBCategoryViewController ()
 
 @end
 
-@implementation QLCategoryViewController
+@implementation DBCategoryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

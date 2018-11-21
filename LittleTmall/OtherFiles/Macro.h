@@ -21,7 +21,7 @@
 
 #define kMainColor UIColorFromHex(0xae3e3c) // 暗红
 #define kBgColor UIColorFromRGB(237, 237, 237) // 白灰色
-#define kTextColor UIColorFromHex(0xdadada) // 灰色
+#define kTextColor UIColorFromHex(0x888888) // 黑灰色
 
 #define kStatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
 
@@ -32,13 +32,13 @@
 #define kIsiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
 
 // 弱引用
-#define QLWeakSelf __weak typeof(self) weakSelf = self;
+#define DBWeakSelf __weak typeof(self) weakSelf = self;
 
 // log
 #ifndef __OPTIMIZE__
-#define QLLog(FORMAT, ...) printf("%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#define DBLog(FORMAT, ...) printf("%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
 #else
-#define QLLog(...){}
+#define DBLog(...){}
 #endif
 
 // const string

@@ -1,5 +1,5 @@
 //
-//  QLBaseTabBarController.h
+//  DBBaseNavigationController.h
 //  LittleTmall
 //
 //  Created by Adam on 2018/11/16.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QLBaseTabBarController : UITabBarController
+@interface DBBaseNavigationController : UINavigationController
 
 @end

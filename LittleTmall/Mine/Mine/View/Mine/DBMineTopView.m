@@ -1,14 +1,14 @@
 //
-//  QLMineTopView.m
+//  DBMineTopView.m
 //  LittleTmall
 //
 //  Created by 苏庆林 on 2018/11/17.
 //  Copyright © 2018年 com.qzxq. All rights reserved.
 //
 
-#import "QLMineTopView.h"
+#import "DBMineTopView.h"
 
-@interface QLMineTopView()
+@interface DBMineTopView()
 
 /**
  背景图片
@@ -37,7 +37,7 @@
 @property (nonatomic, strong) UILabel *restMoney;
 @end
 
-@implementation QLMineTopView
+@implementation DBMineTopView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -63,7 +63,7 @@
     
     self.userNameL = [[UILabel alloc] init];
     [self addSubview:self.userNameL];
-    self.userNameL.text = @"亲爱的小芸芸";
+    self.userNameL.text = @"斗宝商城";
     
     self.pingtaiL = [[UILabel alloc] init];
     [self addSubview:self.pingtaiL];
