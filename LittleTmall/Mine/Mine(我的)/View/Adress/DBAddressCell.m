@@ -16,6 +16,8 @@
 @property (nonatomic, strong) UILabel *phoneNumL;
 @property (nonatomic, strong) UILabel *addressL;
 @property (nonatomic, strong) UILabel *tagL;
+@property (nonatomic, strong) UIButton *deleteBtn;
+
 @end
 
 @implementation DBAddressCell
@@ -49,6 +51,11 @@
     self.addressL.numberOfLines = 3;
     self.addressL.textColor = [UIColor blackColor];
     
+    self.deleteBtn = [[UIButton alloc] init];
+    [self.contentView addSubview:self.deleteBtn];
+    [self.deleteBtn setImage:[UIImage imageNamed:@"address_delete"] forState:UIControlStateNormal];
+    [self.deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
     self.tagL = [[UILabel alloc] init];
     [self.contentView addSubview:self.tagL];
     self.tagL.font = kFont(11);
@@ -66,6 +73,7 @@
     self.userNameL.frame = CGRectMake(margin, margin, 80 *kScale, 30 *kScale);
     self.phoneNumL.frame = CGRectMake(self.userNameL.right, self.userNameL.top, 150 *kScale, 30 *kScale);
     self.addressL.frame = CGRectMake(self.phoneNumL.origin.x, self.phoneNumL.bottom - margin *0.7, 250 *kScale, 50 *kScale);
+    self.deleteBtn.frame = CGRectMake(self.contentView.width - 30 *kScale, self.contentView.centerY, 20 *kScale, 40 *kScale);
     self.tagL.frame = CGRectMake(self.userNameL.origin.x, self.userNameL.bottom, 30 *kScale, 15 *kScale);
     
 }
@@ -78,6 +86,10 @@
     self.addressL.text = addressModel.addressStr;
 }
 
+- (void)deleteBtnClick:(UIButton *)btn
+{
+    DBLog(@"点击删除操作");
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

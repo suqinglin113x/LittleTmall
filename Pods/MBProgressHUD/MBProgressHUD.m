@@ -670,7 +670,8 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
     }
 }
 
-- (void)setOffset:(CGPoint)offset {
+- (void)
+setOffset:(CGPoint)offset {
     if (!CGPointEqualToPoint(offset, _offset)) {
         _offset = offset;
         [self setNeedsUpdateConstraints];

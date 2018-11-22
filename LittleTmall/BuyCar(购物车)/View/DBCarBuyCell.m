@@ -179,11 +179,11 @@
                 if ([view isKindOfClass: [UIImageView class]]) {
                     UIImageView *image=(UIImageView *)view;
                     if (self.selected) {
-                        image.image=[UIImage imageNamed:@"CellButtonSelected"];
+                        image.image=[UIImage imageNamed:@"circle_sel"];
                     }
                     else
                     {
-                        image.image=[UIImage imageNamed:@"CellButton"];
+                        image.image=[UIImage imageNamed:@"circle_nosel"];
                     }
                 }
             }

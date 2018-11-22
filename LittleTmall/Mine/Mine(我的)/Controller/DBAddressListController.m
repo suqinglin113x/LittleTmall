@@ -71,6 +71,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DBAddressBuildController *buildVC = [DBAddressBuildController new];
+    buildVC.saveAddressBlock = ^(DBAddressModel *model) {
+        [self.addressArr addObject:model];
+        [self.tableView reloadData];
+    };
     [self.navigationController pushViewController:buildVC animated:YES];
 }
 
@@ -79,6 +83,10 @@
 {
     DBAddressBuildController *buildVC = [DBAddressBuildController new];
     buildVC.isNewBuild = YES;
+    buildVC.saveAddressBlock = ^(DBAddressModel *model) {
+        [self.addressArr addObject:model];
+        [self.tableView reloadData];
+    };
     [self.navigationController pushViewController:buildVC animated:YES];
 }
 

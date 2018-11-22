@@ -10,6 +10,7 @@
 #import "DBMineTopView.h"
 #import "DBMineBottomView.h"
 #import "DBAddressListController.h"
+#import "DBOpinionFeedbackController.h"
 
 @interface DBMineViewController ()<DBMineBottomViewDelegate>
 
@@ -45,6 +46,10 @@
     if (currentIndex == 4) {
         DBAddressListController *addressVC = [DBAddressListController new];
         [self.navigationController pushViewController:addressVC animated:YES];
+    }
+    if (currentIndex == 8) {
+        DBOpinionFeedbackController *opinionVC = [DBOpinionFeedbackController new];
+        [self.navigationController pushViewController:opinionVC animated:YES];
     }
 }
 

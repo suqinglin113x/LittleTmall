@@ -15,6 +15,10 @@
 #import "Macro.h"
 #import "UIView+category.h"
 #import "UITableView+EmptyDataView.h"
+#import "UIViewController+HUD.h"
+#import "NSString+RegexCategory.h"
+//#import "NSObject+HUD.h"
+
 
 #import <MJRefresh/MJRefresh.h>
 #import <IQKeyboardManager/IQKeyboardManager.h>
