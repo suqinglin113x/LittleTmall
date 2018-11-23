@@ -7,7 +7,7 @@
 //
 
 #import "DBMainViewController.h"
-#import "DBCategoryViewController.h"
+#import "DBLoginViewController.h"
 
 @interface DBMainViewController ()
 
@@ -25,10 +25,8 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self.navigationController pushViewController:[DBCategoryViewController new] animated:YES];
-    
-    
-    
+    [self.navigationController pushViewController:[DBLoginViewController new] animated:YES];
+   
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

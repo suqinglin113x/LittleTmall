@@ -61,6 +61,7 @@
     self.tagL.font = kFont(11);
     self.tagL.textAlignment = 1;
     self.tagL.text = @"默认";
+    self.tagL.hidden = YES;
     self.tagL.textColor = kMainColor;
     self.tagL.layer.borderWidth = 1;
     self.tagL.layer.borderColor = kMainColor.CGColor;
@@ -70,10 +71,11 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.userNameL.frame = CGRectMake(margin, margin, 80 *kScale, 30 *kScale);
+    self.userNameL.frame = CGRectMake(margin, margin *0.6, 80 *kScale, 30 *kScale);
     self.phoneNumL.frame = CGRectMake(self.userNameL.right, self.userNameL.top, 150 *kScale, 30 *kScale);
-    self.addressL.frame = CGRectMake(self.phoneNumL.origin.x, self.phoneNumL.bottom - margin *0.7, 250 *kScale, 50 *kScale);
-    self.deleteBtn.frame = CGRectMake(self.contentView.width - 30 *kScale, self.contentView.centerY, 20 *kScale, 40 *kScale);
+    self.deleteBtn.frame = CGRectMake(self.contentView.width - 30 *kScale, 0, 20 *kScale, 40 *kScale);
+    self.deleteBtn.centerY = self.contentView.centerY;
+    self.addressL.frame = CGRectMake(self.phoneNumL.origin.x, self.phoneNumL.bottom - margin *0.8, 250 *kScale, 50 *kScale);
     self.tagL.frame = CGRectMake(self.userNameL.origin.x, self.userNameL.bottom, 30 *kScale, 15 *kScale);
     
 }
@@ -82,8 +84,10 @@
 {
     _addressModel = addressModel;
     self.userNameL.text = addressModel.userName;
-    self.phoneNumL.text = addressModel.phoneNum;
-    self.addressL.text = addressModel.addressStr;
+    self.phoneNumL.text = addressModel.telNumber;
+    self.addressL.text = addressModel.full_address;
+    self.tagL.hidden = !addressModel.isDefault;
+
 }
 
 - (void)deleteBtnClick:(UIButton *)btn

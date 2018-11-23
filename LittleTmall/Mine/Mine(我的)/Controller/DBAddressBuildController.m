@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UITextField *phoneNumTF;
 @property (nonatomic, strong) UITextField *addressTF;
 @property (nonatomic, strong) UITextField *detailAddressTF;
+@property (nonatomic, strong) UIButton *defaultBtn;
 @property(nonatomic,strong)ZHFAddTitleAddressView * addTitleAddressView;
 @property (nonatomic, strong) NSDictionary *addressInfo;
 @end
@@ -66,18 +67,22 @@
         UIView *lineV = [[UIView alloc] initWithFrame:CGRectMake(0, (hei+1) *(i+1), kScreenWidth, 1)];
         lineV.backgroundColor = UIColorFromHex(0xbebec0);
         [self.view addSubview:lineV];
-        if (i == 0) {
+        if (i == 0) {// 姓名
+            textField.text = self.addressModel? self.addressModel.userName : @"";
             self.userNameTF = textField;
         }
-        if (i == 1) {
+        if (i == 1) {// 手机号码
+            textField.text = self.addressModel? self.addressModel.telNumber : @"";
             self.phoneNumTF = textField;
             textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         }
-        if (i == 2) {
+        if (i == 2) {// 省份等
+            textField.text = self.addressModel? self.addressModel.full_region : @"";
             self.addressTF = textField;
             [textField addTarget:self action:@selector(showAddressView) forControlEvents:UIControlEventTouchDown];
         }
-        if (i == 3) {
+        if (i == 3) {// 详细地址
+            textField.text = self.addressModel? self.addressModel.detailInfo : @"";
             self.detailAddressTF = textField;
         }
         
@@ -86,8 +91,10 @@
     
     UIButton *defaultBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:defaultBtn];
+    self.defaultBtn =  defaultBtn;
     defaultBtn.frame = CGRectMake(0, totalH + 20 *kScale, kScreenWidth *0.5, 50);
     defaultBtn.centerX = self.view.centerX;
+    defaultBtn.selected = self.addressModel.isDefault;
     [defaultBtn setImage:[UIImage imageNamed:@"circle_nosel"] forState:UIControlStateNormal];
     [defaultBtn setImage:[UIImage imageNamed:@"circle_sel"] forState:UIControlStateSelected];
     [defaultBtn setTitle:@"设为默认地址" forState:UIControlStateNormal];
@@ -128,7 +135,7 @@
 -  (void)setDefaultAddress:(UIButton *)btn
 {
     btn.selected = !btn.selected;
-    
+    self.defaultBtn.selected = btn.selected;
 }
 
 - (void)cancleBuild
@@ -156,21 +163,28 @@
     } else {
         DBAddressModel *model = [DBAddressModel new];
         model.userName = self.userNameTF.text;
-        model.phoneNum = self.phoneNumTF.text;
-        model.addressStr = [self.addressTF.text stringByAppendingString:self.detailAddressTF.text];
-        
+        model.telNumber = self.phoneNumTF.text;
+        model.full_address = [self.addressTF.text stringByAppendingString:self.detailAddressTF.text];
+        model.isDefault = self.defaultBtn.selected;
         // 回调
-        if (self.saveAddressBlock) {
-            self.saveAddressBlock(model);
-        }
+//        if (self.saveAddressBlock) {
+//            self.saveAddressBlock(model);
+//        }
+        NSDictionary *dict = @{
+                               
+                               };
+        [BaseNetTool SaveAddressParams:dict block:^(DBAddressModel *model, NSError *error) {
+            
+        }];
         [self.navigationController popViewControllerAnimated:YES];
     }
    
 }
 
 -(void)cancelBtnClick:(NSString *)titleAddress titleID:(NSString *)titleID{
-    self.addressTF.text = titleAddress;
-    NSLog( @"%@", [NSString stringWithFormat:@"打印的对应省市县的id=%@",titleID]);
+    NSString *title = [titleAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    self.addressTF.text = !title.length?self.addressTF.text:titleAddress;
+    NSLog( @"%@", [NSString stringWithFormat:@"打印的对应省市县的id=%@",titleAddress]);
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField

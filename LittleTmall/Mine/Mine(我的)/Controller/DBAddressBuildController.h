@@ -12,6 +12,7 @@
 
 @interface DBAddressBuildController : DBBaseViewController
 
+@property (nonatomic, strong) DBAddressModel *addressModel;
 /** 是否是新建地址*/
 @property (nonatomic, assign) BOOL isNewBuild;
 

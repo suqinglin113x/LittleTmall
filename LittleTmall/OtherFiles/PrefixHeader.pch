@@ -12,15 +12,26 @@
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
 #import "Macro.h"
+#import "BaseHostUrl.h"
+#import "BaseNetService.h"
+#import "BaseNetTool.h"
+#import "BaseUserTool.h"
+#import "BaseModel.h"
+
+
 #import "UIView+category.h"
 #import "UITableView+EmptyDataView.h"
 #import "UIViewController+HUD.h"
+#import "NSObject+HUD.h"
 #import "NSString+RegexCategory.h"
-//#import "NSObject+HUD.h"
+
 
 
 #import <MJRefresh/MJRefresh.h>
 #import <IQKeyboardManager/IQKeyboardManager.h>
+#import <YYModel/YYModel.h>
+
 
 #endif /* PrefixHeader_pch */

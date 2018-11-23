@@ -20,6 +20,7 @@
     if (dicArr && [dicArr isKindOfClass:[NSArray class]]) {
         for (NSDictionary *dict in dicArr) {
             DBAddressModel *model = [DBAddressModel modelWithDict:dict];
+            model.full_address = [model.full_region stringByAppendingString:model.detailInfo];
             [temArr addObject:model];
         }
     }

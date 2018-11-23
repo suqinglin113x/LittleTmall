@@ -37,15 +37,25 @@
 
 - (void)loadAddressData
 {
-    NSDictionary * dict = @{@"userName":@"芸芸",
-                            @"addressStr":@"北京朝阳区三环以内马家堡西里192号楼3单元102",
-                            @"phoneNum":@"13261669965"};
-    NSArray *loadData = @[dict, dict, dict, dict, dict, dict, dict, dict];
-    self.addressArr = [DBAddressModel modelWithDicArr:loadData];
-    if (!self.addressArr.count) {
-        [self.tableView showNoDataViewImg:@"address" hintText:@"快去添加地址吧~" btnTitle:nil];
-    }
-    [self.tableView reloadData];
+//    NSDictionary * dict = @{@"userName":@"芸芸",
+//                            @"addressStr":@"北京朝阳区三环以内马家堡西里192号楼3单元102",
+//                            @"phoneNum":@"13261669965"};
+//    NSArray *loadData = @[dict, dict, dict, dict, dict, dict, dict, dict];
+//    self.addressArr = [DBAddressModel modelWithDicArr:loadData];
+//    if (!self.addressArr.count) {
+//        [self.tableView showNoDataViewImg:@"address" hintText:@"快去添加地址吧~" btnTitle:nil];
+//    }
+//    [self.tableView reloadData];
+   
+    [BaseNetTool GetAddressListParams:nil block:^(NSMutableArray<DBAddressModel *> *modelArr, NSError *error) {
+        if (!modelArr) {
+            [self.tableView showNoDataViewImg:@"address" hintText:@"快去添加地址吧~" btnTitle:nil];
+        } else {
+            
+            self.addressArr = modelArr;
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 #pragma mark -- datasource & delegate
@@ -66,11 +76,12 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90 *kScale;
+    return 80 *kScale;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DBAddressBuildController *buildVC = [DBAddressBuildController new];
+    buildVC.addressModel = self.addressArr[indexPath.row];
     buildVC.saveAddressBlock = ^(DBAddressModel *model) {
         [self.addressArr addObject:model];
         [self.tableView reloadData];

@@ -32,6 +32,12 @@
 		66E1921421A69A6400605E0A /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1921321A69A6400605E0A /* UIViewController+HUD.m */; };
 		66E1921721A69B7C00605E0A /* NSString+RegexCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1921521A69B7C00605E0A /* NSString+RegexCategory.m */; };
 		66E1921D21A6B21A00605E0A /* DBOpinionFeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1921C21A6B21A00605E0A /* DBOpinionFeedbackController.m */; };
+		66E1922121A7A97E00605E0A /* BaseNetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1922021A7A97E00605E0A /* BaseNetTool.m */; };
+		66E1924321A7C84300605E0A /* DBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1924221A7C84300605E0A /* DBLoginViewController.m */; };
+		66E1924C21A7D9A600605E0A /* NSObject+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1924B21A7D9A600605E0A /* NSObject+HUD.m */; };
+		66E1924F21A7E19800605E0A /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1924E21A7E19800605E0A /* BaseModel.m */; };
+		66E1925321A7E1C300605E0A /* DBLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1925221A7E1C300605E0A /* DBLoginModel.m */; };
+		66E1925721A7E2D900605E0A /* BaseUserTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1925621A7E2D900605E0A /* BaseUserTool.m */; };
 		8730BED921A05A9500199CC8 /* DBMineBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730BED821A05A9500199CC8 /* DBMineBottomCell.m */; };
 		8730BEDC21A0696100199CC8 /* UITableView+EmptyDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730BEDB21A0696100199CC8 /* UITableView+EmptyDataView.m */; };
 		87D74FF0219F194200D797FE /* UIView+category.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D74FEF219F194200D797FE /* UIView+category.m */; };
@@ -112,6 +118,19 @@
 		66E1921621A69B7C00605E0A /* NSString+RegexCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RegexCategory.h"; sourceTree = "<group>"; };
 		66E1921B21A6B21A00605E0A /* DBOpinionFeedbackController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBOpinionFeedbackController.h; sourceTree = "<group>"; };
 		66E1921C21A6B21A00605E0A /* DBOpinionFeedbackController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBOpinionFeedbackController.m; sourceTree = "<group>"; };
+		66E1921E21A7A7A000605E0A /* BaseHostUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseHostUrl.h; sourceTree = "<group>"; };
+		66E1921F21A7A97E00605E0A /* BaseNetTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNetTool.h; sourceTree = "<group>"; };
+		66E1922021A7A97E00605E0A /* BaseNetTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNetTool.m; sourceTree = "<group>"; };
+		66E1924121A7C84300605E0A /* DBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLoginViewController.h; sourceTree = "<group>"; };
+		66E1924221A7C84300605E0A /* DBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLoginViewController.m; sourceTree = "<group>"; };
+		66E1924A21A7D9A600605E0A /* NSObject+HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+HUD.h"; sourceTree = "<group>"; };
+		66E1924B21A7D9A600605E0A /* NSObject+HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+HUD.m"; sourceTree = "<group>"; };
+		66E1924D21A7E19800605E0A /* BaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
+		66E1924E21A7E19800605E0A /* BaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		66E1925121A7E1C300605E0A /* DBLoginModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBLoginModel.h; sourceTree = "<group>"; };
+		66E1925221A7E1C300605E0A /* DBLoginModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBLoginModel.m; sourceTree = "<group>"; };
+		66E1925521A7E2D900605E0A /* BaseUserTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseUserTool.h; sourceTree = "<group>"; };
+		66E1925621A7E2D900605E0A /* BaseUserTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseUserTool.m; sourceTree = "<group>"; };
 		8730BED721A05A9500199CC8 /* DBMineBottomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBMineBottomCell.h; sourceTree = "<group>"; };
 		8730BED821A05A9500199CC8 /* DBMineBottomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBMineBottomCell.m; sourceTree = "<group>"; };
 		8730BEDA21A0696100199CC8 /* UITableView+EmptyDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+EmptyDataView.h"; sourceTree = "<group>"; };
@@ -183,6 +202,7 @@
 			children = (
 				664B42F0219E8F9A009F1E08 /* Base */,
 				664B42FE219E9912009F1E08 /* OtherFiles */,
+				66E1922321A7ACA800605E0A /* Login */,
 				664B42EC219E8EB1009F1E08 /* Main(首页) */,
 				664B42EF219E8EED009F1E08 /* Categories(分类) */,
 				87D74FF1219F195300D797FE /* BuyCar(购物车) */,
@@ -237,6 +257,8 @@
 		664B42F0219E8F9A009F1E08 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				66E1925421A7E2B400605E0A /* Tools */,
+				66E1922221A7AA5E00605E0A /* BaseModel */,
 				87D74FED219F192800D797FE /* Category */,
 				664B4301219EB5A0009F1E08 /* BaseNet */,
 				664B42F1219E8FB1009F1E08 /* BaseController */,
@@ -270,6 +292,7 @@
 		664B4301219EB5A0009F1E08 /* BaseNet */ = {
 			isa = PBXGroup;
 			children = (
+				66E1921E21A7A7A000605E0A /* BaseHostUrl.h */,
 				664B4303219EB5FD009F1E08 /* BaseNetService.h */,
 				664B4304219EB5FD009F1E08 /* BaseNetService.m */,
 			);
@@ -358,6 +381,45 @@
 			path = Address;
 			sourceTree = "<group>";
 		};
+		66E1922221A7AA5E00605E0A /* BaseModel */ = {
+			isa = PBXGroup;
+			children = (
+				66E1924D21A7E19800605E0A /* BaseModel.h */,
+				66E1924E21A7E19800605E0A /* BaseModel.m */,
+			);
+			path = BaseModel;
+			sourceTree = "<group>";
+		};
+		66E1922321A7ACA800605E0A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				66E1925021A7E1AB00605E0A /* Model */,
+				66E1924121A7C84300605E0A /* DBLoginViewController.h */,
+				66E1924221A7C84300605E0A /* DBLoginViewController.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		66E1925021A7E1AB00605E0A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				66E1925121A7E1C300605E0A /* DBLoginModel.h */,
+				66E1925221A7E1C300605E0A /* DBLoginModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		66E1925421A7E2B400605E0A /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				66E1921F21A7A97E00605E0A /* BaseNetTool.h */,
+				66E1922021A7A97E00605E0A /* BaseNetTool.m */,
+				66E1925521A7E2D900605E0A /* BaseUserTool.h */,
+				66E1925621A7E2D900605E0A /* BaseUserTool.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		87D74FED219F192800D797FE /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +431,8 @@
 				8730BEDB21A0696100199CC8 /* UITableView+EmptyDataView.m */,
 				66E1921221A69A6300605E0A /* UIViewController+HUD.h */,
 				66E1921321A69A6400605E0A /* UIViewController+HUD.m */,
+				66E1924A21A7D9A600605E0A /* NSObject+HUD.h */,
+				66E1924B21A7D9A600605E0A /* NSObject+HUD.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -609,8 +673,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66E1924321A7C84300605E0A /* DBLoginViewController.m in Sources */,
+				66E1925721A7E2D900605E0A /* BaseUserTool.m in Sources */,
 				66E1918121A4F2AF00605E0A /* DBAddressListController.m in Sources */,
 				664B42C2219E6E3C009F1E08 /* main.m in Sources */,
+				66E1924C21A7D9A600605E0A /* NSObject+HUD.m in Sources */,
 				664B42B4219E6E3B009F1E08 /* AppDelegate.m in Sources */,
 				664B42EB219E8BF5009F1E08 /* DBBaseNavigationController.m in Sources */,
 				664B42F7219E90CA009F1E08 /* DBMainViewController.m in Sources */,
@@ -620,13 +687,16 @@
 				66E1918521A5046400605E0A /* DBAddressCell.m in Sources */,
 				66E1921D21A6B21A00605E0A /* DBOpinionFeedbackController.m in Sources */,
 				66E1920D21A6857100605E0A /* ZHFAddTitleAddressView.m in Sources */,
+				66E1925321A7E1C300605E0A /* DBLoginModel.m in Sources */,
 				66E1920B21A6857100605E0A /* ProvinceModel.m in Sources */,
 				8730BEDC21A0696100199CC8 /* UITableView+EmptyDataView.m in Sources */,
 				66842C0721A29CAC00590CCB /* DBCarBottomBar.m in Sources */,
 				66E1921021A6879800605E0A /* DBAddressModel.m in Sources */,
 				66842C0A21A2C68F00590CCB /* DBCarBuyCell.m in Sources */,
+				66E1924F21A7E19800605E0A /* BaseModel.m in Sources */,
 				87D74FF5219F19C200D797FE /* DBBuyCarViewController.m in Sources */,
 				66E1918E21A5241F00605E0A /* DBAddressBuildController.m in Sources */,
+				66E1922121A7A97E00605E0A /* BaseNetTool.m in Sources */,
 				87D74FFB219FF38A00D797FE /* DBMineTopView.m in Sources */,
 				66E1921421A69A6400605E0A /* UIViewController+HUD.m in Sources */,
 				66E1921721A69B7C00605E0A /* NSString+RegexCategory.m in Sources */,

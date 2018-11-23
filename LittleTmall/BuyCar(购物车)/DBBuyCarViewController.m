@@ -26,21 +26,33 @@
 
 @implementation DBBuyCarViewController
 
-- (void)addHeadTipView
+- (UIView *)sloganV:(NSArray *)textArr
 {
-    UILabel *view = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 35)];
-    view.text = @"阿加隆的厚厚的费";
-    view.backgroundColor = kBgColor;
-    self.tabView.tableHeaderView = view;
+    UIView *sloganV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 35)];
+    sloganV.backgroundColor = kBgColor;
+    for (NSInteger i = 0; i < textArr.count; i ++) {
+        UILabel *slogan = [[UILabel alloc] initWithFrame:CGRectMake(30+kScreenWidth/3.0 *i, 0, kScreenWidth/3.0, 35)];
+        slogan.text = textArr[i];
+        slogan.font = kFont(13);
+        [sloganV addSubview:slogan];
+        UIView *circle = [[UIView alloc] init];
+        circle.frame = CGRectMake(-10, 0, 5, 5);
+        circle.centerY = slogan.centerY;
+        circle.layer.cornerRadius = 2.5;
+        circle.layer.borderWidth = 1;
+        circle.layer.borderColor = kMainColor.CGColor;
+        [slogan addSubview:circle];
+    }
+   
+    return sloganV;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     self.navigationItem.title = @"购物车";
-    
+    self.tabView.tableHeaderView = [self sloganV:@[@"30天无忧退货", @"48小时快速退款", @"免运费"]];
+   
     [self.view addSubview:self.tabView];
-    
-    [self addHeadTipView];
     
     if (self.dataSource.count) {
         [self.tabView reloadData];
