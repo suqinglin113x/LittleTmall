@@ -43,8 +43,13 @@
         circle.layer.borderColor = kMainColor.CGColor;
         [slogan addSubview:circle];
     }
-   
     return sloganV;
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self loadCartListData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,14 +58,7 @@
     self.tabView.tableHeaderView = [self sloganV:@[@"30天无忧退货", @"48小时快速退款", @"免运费"]];
    
     [self.view addSubview:self.tabView];
-    
-    if (self.dataSource.count) {
-        [self.tabView reloadData];
-    } else {
-        [self.tabView showNoDataViewImg:@"购物车" hintText:@"购物车空空如也~" btnTitle:@"去逛逛"];
-        self.tabView.tableFooterView = [UIView new];
-    }
-    
+ 
     // 底部工具条
     [self.view addSubview:self.bottomBar];
     
@@ -69,10 +67,23 @@
     [self addObserver:self forKeyPath:@"self.resultDelArr" options:NSKeyValueObservingOptionNew context:nil];
     
     [self dealChooseAllBlock];
-    
-    
+
     [self dealEditBlock];
     
+}
+
+- (void)loadCartListData
+{
+    [BaseNetTool GetCarListParams:nil block:^(DBCartModel *model, NSError *error) {
+       
+        self.dataSource = (NSMutableArray *)model.cartList;
+        
+        if (self.dataSource.count) {
+            [self.tabView reloadData];
+        } else {
+            [self.tabView showNoDataViewImg:@"购物车" hintText:@"购物车空空如也~" btnTitle:@"去逛逛"];
+        }
+    }];
 }
 //MARK: 全选
 - (void)dealChooseAllBlock
@@ -129,6 +140,7 @@
     self.bottomBar.editBlock = ^(BOOL isSelected) {
         
         [weakSelf.tabView reloadData];
+        
         weakSelf.isEditing = isSelected;
         
         if (isSelected) {
@@ -161,13 +173,13 @@
     }
     
     [cell cellEditingStatus:self.isEditing];
-    cell.productStr = self.dataSource[indexPath.row];
+    cell.model = self.dataSource[indexPath.row];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 82;
+    return 85*kScale;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -222,6 +234,7 @@
         _tabView.dataSource = self;
         _tabView.delegate = self;
         _tabView.editing = YES;
+        _tabView.tableFooterView = [UIView new];
     }
     return _tabView;
 }
@@ -238,9 +251,9 @@
 {
     if (_dataSource == nil) {
         _dataSource = [NSMutableArray array];
-        for (NSInteger i = 1; i <= 20; i++) {
-            [_dataSource addObject:[NSString stringWithFormat:@"打两节课的价位大%02ld", (long)i]];
-        }
+//        for (NSInteger i = 1; i <= 20; i++) {
+//            [_dataSource addObject:[NSString stringWithFormat:@"打两节课的价位大%02ld", (long)i]];
+//        }
     }
     return _dataSource;
 }

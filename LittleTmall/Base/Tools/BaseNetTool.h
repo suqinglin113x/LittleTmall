@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DBLoginModel.h"
 #import "DBAddressModel.h"
+#import "DBCartModel.h"
 
 @interface BaseNetTool : NSObject
 
@@ -24,12 +25,12 @@
 /** 保存地址*/
 + (void)SaveAddressParams:(NSDictionary *)params block:(void(^)(DBAddressModel *model, NSError *error))block;
 
-///** 保存地址*/
-//+ (void)SaveAddressParams:(NSDictionary *)params block:(void(^)(DBAddressModel *model, NSError *error))block;
-//
-///** 保存地址*/
-//+ (void)SaveAddressParams:(NSDictionary *)params block:(void(^)(DBAddressModel *model, NSError *error))block;
-//
+/** 删除地址*/
++ (void)DeleteAddressParams:(NSDictionary *)params block:(void(^)(id response, NSError *error))block;
+
+/** 购物车列表*/
++ (void)GetCarListParams:(NSDictionary *)params block:(void(^)(DBCartModel *model, NSError *error))block;
+
 ///** 保存地址*/
 //+ (void)SaveAddressParams:(NSDictionary *)params block:(void(^)(DBAddressModel *model, NSError *error))block;
 //

@@ -16,7 +16,7 @@
     NSMutableDictionary *mutDic = [NSMutableDictionary dictionary];
 //    [mutDic setValue:@"ios" forKey:@"device"];
 #warning token写死
-    [mutDic setValue:@"2aweja5rvqcsi02p8lvbs9mpypzdhu77" forKey:@"X-Nideshop-Token"];
+    [mutDic setValue:@"86oo8t70tm8xctn7ep9v931vhtvlhjep" forKey:@"X-Nideshop-Token"];
     return mutDic;
 }
 + (AFHTTPSessionManager *)manager {

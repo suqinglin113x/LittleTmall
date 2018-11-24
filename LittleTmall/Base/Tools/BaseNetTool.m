@@ -50,11 +50,33 @@
 + (void)SaveAddressParams:(NSDictionary *)params block:(void (^)(DBAddressModel *, NSError *))block
 {
     [BaseNetService PostWithUrl:SaveAddressUrl parameters:params success:^(id responseObject) {
-        DBAddressModel *model = [DBAddressModel modelWithDict:responseObject[@"data"]];
+        DBAddressModel *model = [DBAddressModel yy_modelWithDictionary:responseObject[@"data"]];
         block(model, nil);
     } failure:^(NSError *error) {
         block(nil, error);
     }];
 }
 
++ (void)DeleteAddressParams:(NSDictionary *)params block:(void (^)(id, NSError *))block
+{
+    [BaseNetService PostWithUrl:DeleteAddressUrl parameters:params success:^(id responseObject) {
+        block(responseObject, nil);
+    } failure:^(NSError *error) {
+        block(nil , error);
+    }];
+}
+
++  (void)GetCarListParams:(NSDictionary *)params block:(void (^)(DBCartModel *, NSError *))block
+{
+    [BaseNetService PostWithUrl:CarBuyUrl parameters:params success:^(id responseObject) {
+        DBCartModel *model = [DBCartModel yy_modelWithDictionary:responseObject[@"data"]];
+        model.couponInfoList = [NSArray yy_modelArrayWithClass:[DBCouponInfoListModel class] json:model.couponInfoList];
+        model.cartList = [NSArray yy_modelArrayWithClass:[DBCarListModel class] json:model.cartList];
+        
+//        model.cartTotalModel = [DBCartTotalModel yy_modelWithDictionary:model.cartTotal];
+        block(model, nil);
+    } failure:^(NSError *error) {
+        block(nil, error);
+    }];
+}
 @end

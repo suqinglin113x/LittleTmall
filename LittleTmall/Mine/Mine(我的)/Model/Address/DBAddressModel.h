@@ -6,9 +6,10 @@
 //  Copyright © 2018年 com.qzxq. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "BaseModel.h"
 
-@interface DBAddressModel : NSObject
+@interface DBAddressModel : BaseModel
+@property (nonatomic, assign) NSInteger id;
 // 是否为默认地址
 @property (nonatomic, assign) BOOL isDefault;
 @property (nonatomic, copy) NSString *userId;
@@ -27,7 +28,5 @@
 // 完整地址
 @property (nonatomic, copy) NSString *full_address;
 
-+ (NSMutableArray *)modelWithDicArr:(NSArray *)dicArr;
-+ (instancetype)modelWithDict:(NSDictionary *)dict;
 
 @end

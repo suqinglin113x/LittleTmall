@@ -161,17 +161,19 @@
         [self showHint:@"请填写更加详细的地址"];
         return;
     } else {
-        DBAddressModel *model = [DBAddressModel new];
-        model.userName = self.userNameTF.text;
-        model.telNumber = self.phoneNumTF.text;
-        model.full_address = [self.addressTF.text stringByAppendingString:self.detailAddressTF.text];
-        model.isDefault = self.defaultBtn.selected;
+//        DBAddressModel *model = [DBAddressModel new];
+//        model.userName = self.userNameTF.text;
+//        model.telNumber = self.phoneNumTF.text;
+//        model.full_address = [self.addressTF.text stringByAppendingString:self.detailAddressTF.text];
+//        model.isDefault = self.defaultBtn.selected;
         // 回调
 //        if (self.saveAddressBlock) {
 //            self.saveAddressBlock(model);
 //        }
-        NSDictionary *dict = @{
-                               
+        NSDictionary *dict = @{@"userName":self.userNameTF.text,
+                               @"telNumber":self.phoneNumTF.text,
+                               @"provinceName":self.addressTF.text,
+                               @"detailInfo":self.detailAddressTF.text
                                };
         [BaseNetTool SaveAddressParams:dict block:^(DBAddressModel *model, NSError *error) {
             

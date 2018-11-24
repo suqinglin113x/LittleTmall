@@ -22,7 +22,7 @@
 @property (nonatomic, strong) UILabel *calculateL;
 
 // model
-@property (nonatomic, copy) NSString *productStr;
+@property (nonatomic, strong) DBCarListModel *model;
 
 /**
  cell编辑状态处理

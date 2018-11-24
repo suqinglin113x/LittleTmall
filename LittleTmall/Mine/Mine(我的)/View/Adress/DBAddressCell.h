@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class DBAddressModel;
+@protocol DBAddressCellDelegate <NSObject>
+- (void)deleAddress:(DBAddressModel *)model;
+@end
 @interface DBAddressCell : UITableViewCell
-
+@property (nonatomic, weak) id <DBAddressCellDelegate> delegate;
 @property (nonatomic, strong) DBAddressModel *addressModel;
 @end

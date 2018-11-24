@@ -23,7 +23,10 @@
 /** 保存地址*/
 #define SaveAddressUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/address/save"]
 
+/** 删除地址*/
+#define DeleteAddressUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/address/delete"]
 
-
+/** 购物车列表*/
+#define CarBuyUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/cart/index"]
 
 #endif /* BaseHostUrl_h */

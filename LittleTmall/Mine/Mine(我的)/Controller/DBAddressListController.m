@@ -12,7 +12,7 @@
 #import "DBAddressBuildController.h"
 
 
-@interface DBAddressListController ()
+@interface DBAddressListController ()<DBAddressCellDelegate>
 @property (nonatomic, strong) UIButton *bottomBuildBtn;
 // 存放地址的数组
 @property (nonatomic, strong) NSMutableArray *addressArr;
@@ -37,16 +37,6 @@
 
 - (void)loadAddressData
 {
-//    NSDictionary * dict = @{@"userName":@"芸芸",
-//                            @"addressStr":@"北京朝阳区三环以内马家堡西里192号楼3单元102",
-//                            @"phoneNum":@"13261669965"};
-//    NSArray *loadData = @[dict, dict, dict, dict, dict, dict, dict, dict];
-//    self.addressArr = [DBAddressModel modelWithDicArr:loadData];
-//    if (!self.addressArr.count) {
-//        [self.tableView showNoDataViewImg:@"address" hintText:@"快去添加地址吧~" btnTitle:nil];
-//    }
-//    [self.tableView reloadData];
-   
     [BaseNetTool GetAddressListParams:nil block:^(NSMutableArray<DBAddressModel *> *modelArr, NSError *error) {
         if (!modelArr) {
             [self.tableView showNoDataViewImg:@"address" hintText:@"快去添加地址吧~" btnTitle:nil];
@@ -71,6 +61,7 @@
         cell = [[DBAddressCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DBAddressCell"];
     }
     tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    cell.delegate = self;
     cell.addressModel = self.addressArr[indexPath.row];
     return cell;
 }
@@ -87,6 +78,14 @@
         [self.tableView reloadData];
     };
     [self.navigationController pushViewController:buildVC animated:YES];
+}
+
+#pragma mark -- DBAddressCellDelegate --
+- (void)deleAddress:(DBAddressModel *)model
+{
+//    [self.addressArr removeObject:model];
+//    [self.tableView reloadData];
+    [self loadAddressData];
 }
 
 #pragma mark -- action --

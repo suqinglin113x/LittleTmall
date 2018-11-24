@@ -30,7 +30,7 @@
     // 商品名称
     self.productName = [[UILabel alloc] init];
     [self.contentView addSubview:self.productName];
-    self.productName.font = kFont(15);
+    self.productName.font = kFont(13);
     self.productName.textAlignment = 0;
     self.productName.textColor = [UIColor blackColor];
     
@@ -92,14 +92,14 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.productImgV.frame = CGRectMake(10, 10, 60, 60);
-    self.productName.frame = CGRectMake(self.productImgV.right +10, self.productImgV.top, 200, 30);
-    self.priceL.frame = CGRectMake(self.productImgV.right + 10, self.contentView.bottom - 40, 60, 30);
-    self.amountL.frame = CGRectMake(self.contentView.width - 70, self.productImgV.top, 60, 30);
+    self.productImgV.frame = CGRectMake(10 *kScale, 10 *kScale, 60*kScale, 60*kScale);
+    self.productName.frame = CGRectMake(self.productImgV.right +10*kScale, self.productImgV.top, 200 *kScale, 30*kScale);
+    self.priceL.frame = CGRectMake(self.productImgV.right + 10*kScale, self.contentView.bottom - 40*kScale, 100 *kScale, 30*kScale);
+    self.amountL.frame = CGRectMake(self.contentView.width - 70*kScale, self.productImgV.top, 60*kScale, 30*kScale);
     self.yixuanzeL.frame = self.amountL.frame;
     
     // 数量选择器
-    self.amountPickView.frame = CGRectMake(self.contentView.width - 120, self.contentView.bottom - 40, 110, 30);
+    self.amountPickView.frame = CGRectMake(self.contentView.width - 120*kScale, self.contentView.bottom - 40*kScale, 110*kScale, 30*kScale);
     CGFloat minusBtnW = self.amountPickView.width/3.0;
     CGFloat minusBtnH = self.amountPickView.height;
     self.minusBtn.frame = CGRectMake(0, 0, minusBtnW, minusBtnH);
@@ -109,12 +109,13 @@
     [self dealCellEditingStatus];
 }
 
-- (void)setProductStr:(NSString *)productStr
+- (void)setModel:(DBCarListModel *)model
 {
-    self.productImgV.image = [UIImage imageNamed:@"mine_headImage"];
-    self.productName.text = productStr;
-    self.priceL.text = @"¥10";
-    self.amountL.text = [NSString stringWithFormat:@"x%d", [self.calculateL.text intValue]];
+    _model = model;
+    [self.productImgV sd_setImageWithURL:[NSURL URLWithString:model.list_pic_url] placeholderImage:[UIImage imageNamed:@"购物车"]];
+    self.productName.text = model.goods_name;
+    self.priceL.text = [NSString stringWithFormat:@"¥%.2f", model.market_price.floatValue];
+    self.amountL.text = [NSString stringWithFormat:@"x%@", model.number];
 }
 
 #pragma mark -- action --
@@ -151,6 +152,7 @@
         self.amountL.hidden = YES;
         self.yixuanzeL.hidden = NO;
         self.amountPickView.hidden = NO;
+        self.calculateL.text = self.model.number;
     } else {
         self.priceL.hidden = NO;
         self.amountL.hidden = NO;

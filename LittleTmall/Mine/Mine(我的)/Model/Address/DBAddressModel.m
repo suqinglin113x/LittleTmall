@@ -10,10 +10,7 @@
 
 @implementation DBAddressModel
 
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key
-{
 
-}
 + (NSMutableArray *)modelWithDicArr:(NSArray *)dicArr
 {
     NSMutableArray *temArr = [NSMutableArray array];

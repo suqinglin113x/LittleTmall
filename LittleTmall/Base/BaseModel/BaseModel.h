@@ -10,4 +10,6 @@
 
 @interface BaseModel : NSObject
 
++ (NSMutableArray *)modelWithDicArr:(NSArray *)dicArr;
++ (instancetype)modelWithDict:(NSDictionary *)dict;
 @end

@@ -73,9 +73,9 @@
     [super layoutSubviews];
     self.userNameL.frame = CGRectMake(margin, margin *0.6, 80 *kScale, 30 *kScale);
     self.phoneNumL.frame = CGRectMake(self.userNameL.right, self.userNameL.top, 150 *kScale, 30 *kScale);
-    self.deleteBtn.frame = CGRectMake(self.contentView.width - 30 *kScale, 0, 20 *kScale, 40 *kScale);
+    self.deleteBtn.frame = CGRectMake(self.contentView.width - 30 *kScale, 0, 20 *kScale, 50 *kScale);
     self.deleteBtn.centerY = self.contentView.centerY;
-    self.addressL.frame = CGRectMake(self.phoneNumL.origin.x, self.phoneNumL.bottom - margin *0.8, 250 *kScale, 50 *kScale);
+    self.addressL.frame = CGRectMake(self.phoneNumL.origin.x, self.phoneNumL.bottom - margin *0.8, 240 *kScale, 50 *kScale);
     self.tagL.frame = CGRectMake(self.userNameL.origin.x, self.userNameL.bottom, 30 *kScale, 15 *kScale);
     
 }
@@ -93,16 +93,33 @@
 - (void)deleteBtnClick:(UIButton *)btn
 {
     DBLog(@"点击删除操作");
-}
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+    [self showAlertmessage:@"确认要删除地址"];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (void)deleteAddress
+{
+    DBWeakSelf
+    NSDictionary *dict = @{@"id":@(self.addressModel.id)};
+    [BaseNetTool DeleteAddressParams:dict block:^(id response, NSError *error) {
+        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(deleAddress:)]) {
+            [weakSelf.delegate deleAddress:weakSelf.addressModel];
+        }
+    }];
+}
 
-    // Configure the view for the selected state
+- (void)showAlertmessage:(NSString *)message
+{
+    UIAlertController *alertV = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelA = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    DBWeakSelf
+    UIAlertAction *sureA = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf deleteAddress];
+    }];
+    [alertV addAction:cancelA];
+    [alertV addAction:sureA];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertV animated:YES completion:nil];
 }
 
 @end

@@ -38,6 +38,7 @@
 		66E1924F21A7E19800605E0A /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1924E21A7E19800605E0A /* BaseModel.m */; };
 		66E1925321A7E1C300605E0A /* DBLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1925221A7E1C300605E0A /* DBLoginModel.m */; };
 		66E1925721A7E2D900605E0A /* BaseUserTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1925621A7E2D900605E0A /* BaseUserTool.m */; };
+		66E1925B21A9569C00605E0A /* DBCartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1925A21A9569C00605E0A /* DBCartModel.m */; };
 		8730BED921A05A9500199CC8 /* DBMineBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730BED821A05A9500199CC8 /* DBMineBottomCell.m */; };
 		8730BEDC21A0696100199CC8 /* UITableView+EmptyDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730BEDB21A0696100199CC8 /* UITableView+EmptyDataView.m */; };
 		87D74FF0219F194200D797FE /* UIView+category.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D74FEF219F194200D797FE /* UIView+category.m */; };
@@ -131,6 +132,8 @@
 		66E1925221A7E1C300605E0A /* DBLoginModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBLoginModel.m; sourceTree = "<group>"; };
 		66E1925521A7E2D900605E0A /* BaseUserTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseUserTool.h; sourceTree = "<group>"; };
 		66E1925621A7E2D900605E0A /* BaseUserTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseUserTool.m; sourceTree = "<group>"; };
+		66E1925921A9569C00605E0A /* DBCartModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBCartModel.h; sourceTree = "<group>"; };
+		66E1925A21A9569C00605E0A /* DBCartModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBCartModel.m; sourceTree = "<group>"; };
 		8730BED721A05A9500199CC8 /* DBMineBottomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBMineBottomCell.h; sourceTree = "<group>"; };
 		8730BED821A05A9500199CC8 /* DBMineBottomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBMineBottomCell.m; sourceTree = "<group>"; };
 		8730BEDA21A0696100199CC8 /* UITableView+EmptyDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+EmptyDataView.h"; sourceTree = "<group>"; };
@@ -420,6 +423,15 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		66E1925821A9567C00605E0A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				66E1925921A9569C00605E0A /* DBCartModel.h */,
+				66E1925A21A9569C00605E0A /* DBCartModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		87D74FED219F192800D797FE /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -440,6 +452,7 @@
 		87D74FF1219F195300D797FE /* BuyCar(购物车) */ = {
 			isa = PBXGroup;
 			children = (
+				66E1925821A9567C00605E0A /* Model */,
 				66842C0121A29C3C00590CCB /* View */,
 				87D74FF3219F19C200D797FE /* DBBuyCarViewController.h */,
 				87D74FF4219F19C200D797FE /* DBBuyCarViewController.m */,
@@ -682,6 +695,7 @@
 				664B42EB219E8BF5009F1E08 /* DBBaseNavigationController.m in Sources */,
 				664B42F7219E90CA009F1E08 /* DBMainViewController.m in Sources */,
 				87D74FFF21A03E7000D797FE /* DBMineBottomView.m in Sources */,
+				66E1925B21A9569C00605E0A /* DBCartModel.m in Sources */,
 				87D74FF0219F194200D797FE /* UIView+category.m in Sources */,
 				8730BED921A05A9500199CC8 /* DBMineBottomCell.m in Sources */,
 				66E1918521A5046400605E0A /* DBAddressCell.m in Sources */,
