@@ -149,16 +149,16 @@
 - (void)saveBuild
 {
     if ([self.userNameTF.text isNilOrBlank]) {
-        [self showHint:@"请输入非空格姓名"];
+        [MBProgressHUD showError:@"请输入非空格姓名"];
         return;
     } else if ([self.phoneNumTF.text isNilOrBlank]|| ![self.phoneNumTF.text isMobilePhone]) {
-        [self showHint:@"请检查手机号是否正确"];
+        [MBProgressHUD showError:@"请检查手机号是否正确"];
         return;
     } else if (self.addressTF.text.length == 0 || !self.addressTF.text) {
-        [self showHint:@"请选择地址"];
+        [MBProgressHUD showError:@"请选择地址"];
         return;
     } else if ([self.detailAddressTF.text isNilOrBlank]) {
-        [self showHint:@"请填写更加详细的地址"];
+        [MBProgressHUD showError:@"请填写更加详细的地址"];
         return;
     } else {
 //        DBAddressModel *model = [DBAddressModel new];

@@ -19,3 +19,6 @@
 @implementation DBCarListModel
 
 @end
+@implementation DBCartTotalModel
+
+@end

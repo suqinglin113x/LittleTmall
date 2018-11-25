@@ -29,6 +29,16 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>YYModel.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 	</dict>
 </dict>
 </plist>

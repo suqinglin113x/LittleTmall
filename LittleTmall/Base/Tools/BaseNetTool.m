@@ -73,7 +73,7 @@
         model.couponInfoList = [NSArray yy_modelArrayWithClass:[DBCouponInfoListModel class] json:model.couponInfoList];
         model.cartList = [NSArray yy_modelArrayWithClass:[DBCarListModel class] json:model.cartList];
         
-//        model.cartTotalModel = [DBCartTotalModel yy_modelWithDictionary:model.cartTotal];
+        model.cartTotalModel = [DBCartTotalModel yy_modelWithDictionary:model.cartTotal];
         block(model, nil);
     } failure:^(NSError *error) {
         block(nil, error);

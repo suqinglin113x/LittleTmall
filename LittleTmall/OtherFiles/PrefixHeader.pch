@@ -23,9 +23,10 @@
 
 #import "UIView+category.h"
 #import "UITableView+EmptyDataView.h"
-#import "UIViewController+HUD.h"
-#import "NSObject+HUD.h"
+//#import "UIViewController+HUD.h"
 #import "NSString+RegexCategory.h"
+#import "MBProgressHUD+MJ.h"
+
 
 
 

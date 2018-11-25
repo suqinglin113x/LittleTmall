@@ -9,7 +9,9 @@
 #ifndef BaseHostUrl_h
 #define BaseHostUrl_h
 
-#define DBBaseUrl @"http://192.168.0.11:6101/platform"
+#define DBBaseUrl       @"http://192.168.0.11:6101/platform"
+
+//#define DBBaseUrl       @"http://106.75.99.126:6302/platform"
 
 /** 快速登录api*/
 #define LoginUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/auth/login_by_mobile"]
@@ -28,5 +30,8 @@
 
 /** 购物车列表*/
 #define CarBuyUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/cart/index"]
+
+/** 我的*/
+#define MineUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/user/userAccount"]
 
 #endif /* BaseHostUrl_h */

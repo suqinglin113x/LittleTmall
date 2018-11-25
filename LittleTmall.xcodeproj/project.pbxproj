@@ -34,13 +34,13 @@
 		66E1921D21A6B21A00605E0A /* DBOpinionFeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1921C21A6B21A00605E0A /* DBOpinionFeedbackController.m */; };
 		66E1922121A7A97E00605E0A /* BaseNetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1922021A7A97E00605E0A /* BaseNetTool.m */; };
 		66E1924321A7C84300605E0A /* DBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1924221A7C84300605E0A /* DBLoginViewController.m */; };
-		66E1924C21A7D9A600605E0A /* NSObject+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1924B21A7D9A600605E0A /* NSObject+HUD.m */; };
 		66E1924F21A7E19800605E0A /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1924E21A7E19800605E0A /* BaseModel.m */; };
 		66E1925321A7E1C300605E0A /* DBLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1925221A7E1C300605E0A /* DBLoginModel.m */; };
 		66E1925721A7E2D900605E0A /* BaseUserTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1925621A7E2D900605E0A /* BaseUserTool.m */; };
 		66E1925B21A9569C00605E0A /* DBCartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E1925A21A9569C00605E0A /* DBCartModel.m */; };
 		8730BED921A05A9500199CC8 /* DBMineBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730BED821A05A9500199CC8 /* DBMineBottomCell.m */; };
 		8730BEDC21A0696100199CC8 /* UITableView+EmptyDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730BEDB21A0696100199CC8 /* UITableView+EmptyDataView.m */; };
+		87BB8CCC21AA264C00B767FC /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 87BB8CCA21AA264C00B767FC /* MBProgressHUD+MJ.m */; };
 		87D74FF0219F194200D797FE /* UIView+category.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D74FEF219F194200D797FE /* UIView+category.m */; };
 		87D74FF5219F19C200D797FE /* DBBuyCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D74FF4219F19C200D797FE /* DBBuyCarViewController.m */; };
 		87D74FF8219F19CF00D797FE /* DBMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D74FF7219F19CF00D797FE /* DBMineViewController.m */; };
@@ -124,8 +124,6 @@
 		66E1922021A7A97E00605E0A /* BaseNetTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNetTool.m; sourceTree = "<group>"; };
 		66E1924121A7C84300605E0A /* DBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLoginViewController.h; sourceTree = "<group>"; };
 		66E1924221A7C84300605E0A /* DBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLoginViewController.m; sourceTree = "<group>"; };
-		66E1924A21A7D9A600605E0A /* NSObject+HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+HUD.h"; sourceTree = "<group>"; };
-		66E1924B21A7D9A600605E0A /* NSObject+HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+HUD.m"; sourceTree = "<group>"; };
 		66E1924D21A7E19800605E0A /* BaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		66E1924E21A7E19800605E0A /* BaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		66E1925121A7E1C300605E0A /* DBLoginModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBLoginModel.h; sourceTree = "<group>"; };
@@ -138,6 +136,8 @@
 		8730BED821A05A9500199CC8 /* DBMineBottomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBMineBottomCell.m; sourceTree = "<group>"; };
 		8730BEDA21A0696100199CC8 /* UITableView+EmptyDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+EmptyDataView.h"; sourceTree = "<group>"; };
 		8730BEDB21A0696100199CC8 /* UITableView+EmptyDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+EmptyDataView.m"; sourceTree = "<group>"; };
+		87BB8CCA21AA264C00B767FC /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
+		87BB8CCB21AA264C00B767FC /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
 		87D74FEE219F194200D797FE /* UIView+category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+category.h"; sourceTree = "<group>"; };
 		87D74FEF219F194200D797FE /* UIView+category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+category.m"; sourceTree = "<group>"; };
 		87D74FF3219F19C200D797FE /* DBBuyCarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBBuyCarViewController.h; sourceTree = "<group>"; };
@@ -262,7 +262,6 @@
 			children = (
 				66E1925421A7E2B400605E0A /* Tools */,
 				66E1922221A7AA5E00605E0A /* BaseModel */,
-				87D74FED219F192800D797FE /* Category */,
 				664B4301219EB5A0009F1E08 /* BaseNet */,
 				664B42F1219E8FB1009F1E08 /* BaseController */,
 			);
@@ -305,6 +304,7 @@
 		664B4307219EDC2E009F1E08 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				87D74FED219F192800D797FE /* Category */,
 			);
 			path = Libs;
 			sourceTree = "<group>";
@@ -443,8 +443,8 @@
 				8730BEDB21A0696100199CC8 /* UITableView+EmptyDataView.m */,
 				66E1921221A69A6300605E0A /* UIViewController+HUD.h */,
 				66E1921321A69A6400605E0A /* UIViewController+HUD.m */,
-				66E1924A21A7D9A600605E0A /* NSObject+HUD.h */,
-				66E1924B21A7D9A600605E0A /* NSObject+HUD.m */,
+				87BB8CCB21AA264C00B767FC /* MBProgressHUD+MJ.h */,
+				87BB8CCA21AA264C00B767FC /* MBProgressHUD+MJ.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -690,10 +690,10 @@
 				66E1925721A7E2D900605E0A /* BaseUserTool.m in Sources */,
 				66E1918121A4F2AF00605E0A /* DBAddressListController.m in Sources */,
 				664B42C2219E6E3C009F1E08 /* main.m in Sources */,
-				66E1924C21A7D9A600605E0A /* NSObject+HUD.m in Sources */,
 				664B42B4219E6E3B009F1E08 /* AppDelegate.m in Sources */,
 				664B42EB219E8BF5009F1E08 /* DBBaseNavigationController.m in Sources */,
 				664B42F7219E90CA009F1E08 /* DBMainViewController.m in Sources */,
+				87BB8CCC21AA264C00B767FC /* MBProgressHUD+MJ.m in Sources */,
 				87D74FFF21A03E7000D797FE /* DBMineBottomView.m in Sources */,
 				66E1925B21A9569C00605E0A /* DBCartModel.m in Sources */,
 				87D74FF0219F194200D797FE /* UIView+category.m in Sources */,

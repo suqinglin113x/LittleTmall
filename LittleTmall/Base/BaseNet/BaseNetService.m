@@ -16,7 +16,7 @@
     NSMutableDictionary *mutDic = [NSMutableDictionary dictionary];
 //    [mutDic setValue:@"ios" forKey:@"device"];
 #warning token写死
-    [mutDic setValue:@"86oo8t70tm8xctn7ep9v931vhtvlhjep" forKey:@"X-Nideshop-Token"];
+    [mutDic setValue:@"89uvmzjka0twybcyq1facwyp39i0jhdf" forKey:@"X-Nideshop-Token"];
     return mutDic;
 }
 + (AFHTTPSessionManager *)manager {
@@ -25,6 +25,7 @@
     dispatch_once(&onceToken, ^{
         manager = [AFHTTPSessionManager manager];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", @"text/json", @"text/javascript", @"text/html", nil];
+        manager.requestSerializer.timeoutInterval = 10;
         NSDictionary *headerDic = [BaseNetService headerDic];
         for (NSString *key in headerDic.allKeys) {
             [manager.requestSerializer setValue:headerDic[key] forHTTPHeaderField:key];
@@ -38,13 +39,15 @@
 {
     DBLog(@"网络请求========url:%@\n;parameters=========:%@\n",urlString, parameters);
     
+    [MBProgressHUD showMessage:@"加载中..."];
     [[BaseNetService manager] POST:urlString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
+        [MBProgressHUD hideHUD];
         DBLog(@"返回值========：%@", responseObject);
         if ([responseObject[@"code"] integerValue] == 500) {
-            [self showHint_object:responseObject[@"msg"]];
+            [MBProgressHUD showError:responseObject[@"msg"]];
         } else {
             successBlock(responseObject);
         }
@@ -53,7 +56,8 @@
         
         DBLog(@"网络请求error========url:%@\n%@",task.response.URL,error);
         failureBlock(error);
-        
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showError:@"网络异常，请稍后再试"];
     }];
 }
 @end

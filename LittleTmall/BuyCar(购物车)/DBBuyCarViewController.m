@@ -75,11 +75,12 @@
 - (void)loadCartListData
 {
     [BaseNetTool GetCarListParams:nil block:^(DBCartModel *model, NSError *error) {
-       
         self.dataSource = (NSMutableArray *)model.cartList;
         
         if (self.dataSource.count) {
             [self.tabView reloadData];
+            
+            [self.tabView hideNoDataView];
         } else {
             [self.tabView showNoDataViewImg:@"购物车" hintText:@"购物车空空如也~" btnTitle:@"去逛逛"];
         }
