@@ -16,7 +16,7 @@
     NSMutableDictionary *mutDic = [NSMutableDictionary dictionary];
 //    [mutDic setValue:@"ios" forKey:@"device"];
 #warning token写死
-    [mutDic setValue:@"89uvmzjka0twybcyq1facwyp39i0jhdf" forKey:@"X-Nideshop-Token"];
+    [mutDic setValue:@"1f8kapb1xinuc0l002k7e6jxei460wds" forKey:@"X-Nideshop-Token"];
     return mutDic;
 }
 + (AFHTTPSessionManager *)manager {
@@ -48,10 +48,13 @@
         DBLog(@"返回值========：%@", responseObject);
         if ([responseObject[@"code"] integerValue] == 500) {
             [MBProgressHUD showError:responseObject[@"msg"]];
+            successBlock(responseObject[@"msg"]);
+        }else if ([responseObject[@"errno"] integerValue] == 401){// 登录失效
+            [MBProgressHUD showError:responseObject[@"errmsg"]];
+            successBlock(responseObject[@"errmsg"]);
         } else {
-            successBlock(responseObject);
+            successBlock(responseObject[@"data"]);
         }
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         DBLog(@"网络请求error========url:%@\n%@",task.response.URL,error);

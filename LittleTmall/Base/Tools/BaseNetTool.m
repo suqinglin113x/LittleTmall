@@ -14,8 +14,8 @@
 {
     [BaseNetService PostWithUrl:LoginUrl parameters:params success:^(id responseObject) {
     
-        NSString *tokenStr = responseObject[@"data"][@"token"];
-        DBLoginModel *model = [DBLoginModel yy_modelWithDictionary:responseObject[@"data"][@"userInfo"]];
+        NSString *tokenStr = responseObject[@"token"];
+        DBLoginModel *model = [DBLoginModel yy_modelWithDictionary:responseObject[@"userInfo"]];
         model.token = tokenStr;
         [BaseUserTool saveUserInfo:model];
         
@@ -39,7 +39,7 @@
 + (void)GetAddressListParams:(NSDictionary *)params block:(void (^)(NSMutableArray<DBAddressModel *> *, NSError *))block
 {
     [BaseNetService PostWithUrl:AddressListUrl parameters:params success:^(id responseObject) {
-        NSMutableArray *modelArr = [DBAddressModel modelWithDicArr:responseObject[@"data"]];
+        NSMutableArray *modelArr = [DBAddressModel modelWithDicArr:responseObject];
         block(modelArr, nil);
         
     } failure:^(NSError *error) {
@@ -50,7 +50,7 @@
 + (void)SaveAddressParams:(NSDictionary *)params block:(void (^)(DBAddressModel *, NSError *))block
 {
     [BaseNetService PostWithUrl:SaveAddressUrl parameters:params success:^(id responseObject) {
-        DBAddressModel *model = [DBAddressModel yy_modelWithDictionary:responseObject[@"data"]];
+        DBAddressModel *model = [DBAddressModel yy_modelWithDictionary:responseObject];
         block(model, nil);
     } failure:^(NSError *error) {
         block(nil, error);
@@ -69,7 +69,7 @@
 +  (void)GetCarListParams:(NSDictionary *)params block:(void (^)(DBCartModel *, NSError *))block
 {
     [BaseNetService PostWithUrl:CarBuyUrl parameters:params success:^(id responseObject) {
-        DBCartModel *model = [DBCartModel yy_modelWithDictionary:responseObject[@"data"]];
+        DBCartModel *model = [DBCartModel yy_modelWithDictionary:responseObject];
         model.couponInfoList = [NSArray yy_modelArrayWithClass:[DBCouponInfoListModel class] json:model.couponInfoList];
         model.cartList = [NSArray yy_modelArrayWithClass:[DBCarListModel class] json:model.cartList];
         
@@ -77,6 +77,35 @@
         block(model, nil);
     } failure:^(NSError *error) {
         block(nil, error);
+    }];
+}
+
++ (void)GetMineParams:(NSDictionary *)params block:(void (^)(NSString *, NSError *))block
+{
+    [BaseNetService PostWithUrl:MineUrl parameters:params success:^(id responseObject) {
+        NSString *coinStr = responseObject;
+        block(coinStr, nil);
+    } failure:^(NSError *error) {
+        block(nil, error);
+    }];
+}
+
++ (void)GetOrderListParams:(NSDictionary *)params block:(void (^)(NSArray <DBOrderListModel *>*, NSError *))block
+{
+    [BaseNetService PostWithUrl:OrderListUrl parameters:params success:^(id responseObject) {
+        NSArray *orderLists = [NSArray yy_modelArrayWithClass:[DBOrderListModel class] json:responseObject[@"data"]];
+        block(orderLists, nil);
+    } failure:^(NSError *error) {
+        block(nil, error);
+    }];
+}
+
++ (void)SignoutParams:(NSDictionary *)params block:(void (^)(id, NSError *))block
+{
+    [BaseNetService PostWithUrl:SignoutUrl parameters:params success:^(id responseObject) {
+        
+    } failure:^(NSError *error) {
+        
     }];
 }
 @end

@@ -12,6 +12,7 @@
 @interface BaseUserTool : NSObject
 
 + (void)saveUserInfo:(DBLoginModel *)info;
++ (void)deleteUserInfo;
 + (DBLoginModel *)userInfo;
 + (NSString *)getToken;
 + (NSString *)getUserId;

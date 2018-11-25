@@ -10,6 +10,8 @@
 #import "DBLoginModel.h"
 #import "DBAddressModel.h"
 #import "DBCartModel.h"
+#import "DBOrderListModel.h"
+
 
 @interface BaseNetTool : NSObject
 
@@ -31,11 +33,14 @@
 /** 购物车列表*/
 + (void)GetCarListParams:(NSDictionary *)params block:(void(^)(DBCartModel *model, NSError *error))block;
 
-///** 保存地址*/
-//+ (void)SaveAddressParams:(NSDictionary *)params block:(void(^)(DBAddressModel *model, NSError *error))block;
-//
-///** 保存地址*/
-//+ (void)SaveAddressParams:(NSDictionary *)params block:(void(^)(DBAddressModel *model, NSError *error))block;
+/** 我的*/
++ (void)GetMineParams:(NSDictionary *)params block:(void(^)(NSString *coinStr, NSError *error))block;
+
+/** 订单列表*/
++ (void)GetOrderListParams:(NSDictionary *)params block:(void(^)(NSArray <DBOrderListModel *> *orderLists, NSError *error))block;
+
+/** 退出*/
++ (void)SignoutParams:(NSDictionary *)params block:(void(^)(id response, NSError *error))block;
 
 
 

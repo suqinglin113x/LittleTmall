@@ -19,7 +19,11 @@
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:kUserModel];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-
++ (void)deleteUserInfo
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kUserModel];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 + (DBLoginModel *)userInfo
 {
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:kUserModel];

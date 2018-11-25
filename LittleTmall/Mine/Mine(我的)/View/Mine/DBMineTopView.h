@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 @interface DBMineTopView : UIView
 
+@property (nonatomic, copy) NSString *coinStr;
 @end
 
 NS_ASSUME_NONNULL_END

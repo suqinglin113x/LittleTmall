@@ -38,6 +38,7 @@
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.tableFooterView = [UIView new];
     }
     return _tableView;
 }

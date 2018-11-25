@@ -31,7 +31,19 @@
 /** 购物车列表*/
 #define CarBuyUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/cart/index"]
 
+/** 去结算*/
+#define ProductCheckOutUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/cart/checkout"]
+
 /** 我的*/
 #define MineUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/user/userAccount"]
+
+/** 我的订单*/
+#define OrderListUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/order/list"]
+
+/** 退出*/
+#define SignoutUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@""]
+
+
+
 
 #endif /* BaseHostUrl_h */

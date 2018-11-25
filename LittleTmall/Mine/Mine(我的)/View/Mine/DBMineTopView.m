@@ -34,7 +34,7 @@
 /**
  余额
  */
-@property (nonatomic, strong) UILabel *restMoney;
+@property (nonatomic, strong) UILabel *restCoinL;
 @end
 
 @implementation DBMineTopView
@@ -58,20 +58,15 @@
     
     self.headImageV = [[UIImageView alloc] init];
     [self addSubview:self.headImageV];
-    self.headImageV.image = [UIImage imageNamed:@"mine_headImage"];
     
     
     self.userNameL = [[UILabel alloc] init];
     [self addSubview:self.userNameL];
-    self.userNameL.text = @"斗宝商城";
     
     self.pingtaiL = [[UILabel alloc] init];
     [self addSubview:self.pingtaiL];
-    self.pingtaiL.text = @"平台币可用余额";
-    
-    self.restMoney = [[UILabel alloc] init];
-    [self addSubview:self.restMoney];
-    self.restMoney.text = @"0.00";
+    self.restCoinL = [[UILabel alloc] init];
+    [self addSubview:self.restCoinL];
     
     for (UILabel *lab in self.subviews) {
         if ([lab isKindOfClass:[UILabel class]]) {
@@ -79,6 +74,17 @@
             lab.textAlignment = 1;
             lab.font = kFont(15);
         }
+    }
+    
+    if([BaseUserTool getToken]){
+        self.headImageV.image = [UIImage imageNamed:@"mine_headImage"];
+        self.userNameL.text = @"斗宝商城";
+        self.pingtaiL.text = @"平台币可用余额";
+        self.restCoinL.text = @"0.00";
+    } else {
+        self.headImageV.image = [UIImage imageNamed:@""];
+        self.userNameL.text = @"hi，请登录";
+        self.pingtaiL.hidden = self.restCoinL.hidden = YES;
     }
 }
 - (void)layoutSubviews
@@ -96,8 +102,13 @@
     self.pingtaiL.frame = CGRectMake(0, CGRectGetMaxY(self.userNameL.frame) +5, kScreenWidth *0.5, 30 *kScale);
     self.pingtaiL.centerX = self.center.x;
     
-    self.restMoney.frame = CGRectMake(0, CGRectGetMaxY(self.pingtaiL.frame), kScreenWidth *0.6, 30 *kScale);
-    self.restMoney.centerX = self.center.x;
+    self.restCoinL.frame = CGRectMake(0, CGRectGetMaxY(self.pingtaiL.frame), kScreenWidth *0.6, 30 *kScale);
+    self.restCoinL.centerX = self.center.x;
 }
 
+- (void)setCoinStr:(NSString *)coinStr
+{
+    _coinStr = coinStr;
+    self.restCoinL.text = [NSString stringWithFormat:@"%.2f", coinStr.floatValue];
+}
 @end
