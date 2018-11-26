@@ -49,7 +49,8 @@
 
 + (void)SaveAddressParams:(NSDictionary *)params block:(void (^)(DBAddressModel *, NSError *))block
 {
-    [BaseNetService PostWithUrl:SaveAddressUrl parameters:params success:^(id responseObject) {
+    
+    [BaseNetService PostWithUrl:AddressSaveUrl parameters:params success:^(id responseObject) {
         DBAddressModel *model = [DBAddressModel yy_modelWithDictionary:responseObject];
         block(model, nil);
     } failure:^(NSError *error) {
@@ -59,7 +60,7 @@
 
 + (void)DeleteAddressParams:(NSDictionary *)params block:(void (^)(id, NSError *))block
 {
-    [BaseNetService PostWithUrl:DeleteAddressUrl parameters:params success:^(id responseObject) {
+    [BaseNetService PostWithUrl:AddressDeleteUrl parameters:params success:^(id responseObject) {
         block(responseObject, nil);
     } failure:^(NSError *error) {
         block(nil , error);
@@ -73,6 +74,26 @@
         model.couponInfoList = [NSArray yy_modelArrayWithClass:[DBCouponInfoListModel class] json:model.couponInfoList];
         model.cartList = [NSArray yy_modelArrayWithClass:[DBCarListModel class] json:model.cartList];
         
+        model.cartTotalModel = [DBCartTotalModel yy_modelWithDictionary:model.cartTotal];
+        block(model, nil);
+    } failure:^(NSError *error) {
+        block(nil, error);
+    }];
+}
+
++ (void)CarListDeleteParams:(NSDictionary *)params block:(void (^)(DBCartModel *, NSError *))block
+{
+    [BaseNetService PostWithUrl:CarDeleteUrl parameters:params success:^(id responseObject) {
+        block(nil, nil);
+    } failure:^(NSError *error) {
+        block(nil, error);
+    }];
+}
+
++ (void)GetCarCheckParams:(NSDictionary *)params block:(void (^)(DBCartModel *, NSError *))block
+{
+    [BaseNetService PostWithUrl:CarCheckUrl parameters:params success:^(id responseObject) {
+        DBCartModel *model = [DBCartModel yy_modelWithDictionary:responseObject];
         model.cartTotalModel = [DBCartTotalModel yy_modelWithDictionary:model.cartTotal];
         block(model, nil);
     } failure:^(NSError *error) {
@@ -107,5 +128,16 @@
     } failure:^(NSError *error) {
         
     }];
+}
+
+
+
+#pragma mark -- other --
+
++ (NSString*)dictionaryToJson:(NSDictionary *)dic
+{
+    NSError *parseError =nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 @end

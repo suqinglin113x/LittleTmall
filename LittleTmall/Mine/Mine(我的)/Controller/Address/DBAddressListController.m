@@ -21,6 +21,12 @@
 
 @implementation DBAddressListController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self loadAddressData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -30,9 +36,7 @@
     self.tableView.height -= self.bottomBuildBtn.height;
     [self.view addSubview:self.tableView];
     self.tableView.tableFooterView = [UIView new];
-    
-    
-    [self loadAddressData];
+  
 }
 
 - (void)loadAddressData

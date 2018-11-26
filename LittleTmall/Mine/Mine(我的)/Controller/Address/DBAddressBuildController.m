@@ -170,10 +170,22 @@
 //        if (self.saveAddressBlock) {
 //            self.saveAddressBlock(model);
 //        }
-        NSDictionary *dict = @{@"userName":self.userNameTF.text,
+        NSDictionary *dict = @{
+                               @"id":@(self.addressModel.id),
+                               @"userName":self.userNameTF.text,
                                @"telNumber":self.phoneNumTF.text,
                                @"provinceName":self.addressTF.text,
-                               @"detailInfo":self.detailAddressTF.text
+                               @"detailInfo":self.detailAddressTF.text,
+//                               @"province_id":@4,
+//                               @"city_id":@115,
+//                               @"district_id":@9939,
+                               @"is_default":@(self.defaultBtn.selected),
+                               @"cityName":@"",
+                               @"countyName":@"",
+//                               @"province":@4,
+//                               @"city":@115,
+//                               @"district":@9939,
+//                               @"town":@0
                                };
         [BaseNetTool SaveAddressParams:dict block:^(DBAddressModel *model, NSError *error) {
             
@@ -184,6 +196,7 @@
 }
 
 -(void)cancelBtnClick:(NSString *)titleAddress titleID:(NSString *)titleID{
+    NSArray * arrs = [titleAddress componentsSeparatedByString:@" "];
     NSString *title = [titleAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     self.addressTF.text = !title.length?self.addressTF.text:titleAddress;
     NSLog( @"%@", [NSString stringWithFormat:@"打印的对应省市县的id=%@",titleAddress]);

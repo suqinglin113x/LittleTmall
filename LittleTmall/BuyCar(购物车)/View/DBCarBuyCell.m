@@ -10,6 +10,7 @@
 
 @interface DBCarBuyCell()
 @property (nonatomic, strong) UIView *amountPickView;
+@property (nonatomic, strong) UIButton *itemCellBtn;
 @end
 @implementation DBCarBuyCell
 
@@ -87,6 +88,12 @@
     [self.plusBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.plusBtn.titleLabel.font = kFont(17);
     
+    // itemCellBtn
+    self.itemCellBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.contentView addSubview:self.itemCellBtn];
+    [self.itemCellBtn addTarget:self action:@selector(itemCellBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.itemCellBtn.backgroundColor = [UIColor clearColor];
+    
 }
 
 - (void)layoutSubviews
@@ -106,6 +113,9 @@
     self.calculateL.frame = CGRectMake(minusBtnW, 0, minusBtnW, minusBtnH);
     self.plusBtn.frame = CGRectMake(minusBtnW *2, 0, minusBtnW, minusBtnH);
     
+    self.itemCellBtn.frame = CGRectMake(5 *kScale, 0, self.contentView.width - 120 *kScale, self.contentView.height);
+    
+    // ...
     [self dealCellEditingStatus];
 }
 
@@ -141,10 +151,13 @@
     }
     self.amountL.text = self.calculateL.text;
 }
-- (void)refreshDatas
+
+- (void)itemCellBtnClick:(UIButton *)btn
 {
-    
+    NSLog(@"跳到对应商品详情页");
 }
+
+
 - (void)cellEditingStatus:(BOOL)isEdting
 {
     if (isEdting) {

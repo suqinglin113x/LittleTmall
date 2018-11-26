@@ -23,16 +23,22 @@
 #define AddressListUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/address/list"]
 
 /** 保存地址*/
-#define SaveAddressUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/address/save"]
+#define AddressSaveUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/address/save"]
 
 /** 删除地址*/
-#define DeleteAddressUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/address/delete"]
+#define AddressDeleteUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/address/delete"]
 
 /** 购物车列表*/
 #define CarBuyUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/cart/index"]
 
+/** 购物车删除*/
+#define CarDeleteUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/cart/delete"]
+
+/** 购物车删除*/
+#define CarCheckUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/cart/checked"]
+
 /** 去结算*/
-#define ProductCheckOutUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/cart/checkout"]
+#define CarCheckOutUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/cart/checkout"]
 
 /** 我的*/
 #define MineUrl [NSString stringWithFormat:@"%@%@",DBBaseUrl,@"/api/user/userAccount"]

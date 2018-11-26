@@ -25,5 +25,11 @@
 
 @property (nonatomic, copy) void(^editBlock)(BOOL isSelected);
 
-@property (nonatomic, copy) NSArray *dataArr;
+@property (nonatomic, copy) void(^deleteBlock)(NSArray *deleteArr);
+// 存放删除的数组
+@property (nonatomic, copy) NSArray *resultDelArr;
+// 存放去买的数组
+@property (nonatomic, copy) NSArray *resultBuyArr;
+
+@property (nonatomic, strong) DBCartModel *cartModel;
 @end

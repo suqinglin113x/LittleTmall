@@ -33,6 +33,12 @@
 /** 购物车列表*/
 + (void)GetCarListParams:(NSDictionary *)params block:(void(^)(DBCartModel *model, NSError *error))block;
 
+/** 购物车删除*/
++ (void)CarListDeleteParams:(NSDictionary *)params block:(void(^)(DBCartModel *model, NSError *error))block;
+
+/** 购物车选中否*/
++ (void)GetCarCheckParams:(NSDictionary *)params block:(void(^)(DBCartModel *model, NSError *error))block;
+
 /** 我的*/
 + (void)GetMineParams:(NSDictionary *)params block:(void(^)(NSString *coinStr, NSError *error))block;
 

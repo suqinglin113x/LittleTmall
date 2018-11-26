@@ -61,11 +61,14 @@
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
             } else {
                 [self.orderLists addObjectsFromArray:orderLists];
+                [self.tableView.mj_footer endRefreshing];
             }
         }
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
     }];
+   
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

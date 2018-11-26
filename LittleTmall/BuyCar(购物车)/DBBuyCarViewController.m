@@ -21,30 +21,12 @@
 // 存放删除的商品
 @property (strong, nonatomic) NSMutableArray *resultDelArr;
 
+@property (nonatomic, strong) DBCartModel *cartModel;
 @property (assign, nonatomic) BOOL isEditing;
 @end
 
 @implementation DBBuyCarViewController
 
-- (UIView *)sloganV:(NSArray *)textArr
-{
-    UIView *sloganV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 35)];
-    sloganV.backgroundColor = kBgColor;
-    for (NSInteger i = 0; i < textArr.count; i ++) {
-        UILabel *slogan = [[UILabel alloc] initWithFrame:CGRectMake(30+kScreenWidth/3.0 *i, 0, kScreenWidth/3.0, 35)];
-        slogan.text = textArr[i];
-        slogan.font = kFont(13);
-        [sloganV addSubview:slogan];
-        UIView *circle = [[UIView alloc] init];
-        circle.frame = CGRectMake(-10, 0, 5, 5);
-        circle.centerY = slogan.centerY;
-        circle.layer.cornerRadius = 2.5;
-        circle.layer.borderWidth = 1;
-        circle.layer.borderColor = kMainColor.CGColor;
-        [slogan addSubview:circle];
-    }
-    return sloganV;
-}
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -70,23 +52,71 @@
 
     [self dealEditBlock];
     
+    [self dealDeleteBlock];
+    
+    
 }
-
+//MARK: 数据请求
+/** 购物车列表数据*/
 - (void)loadCartListData
 {
+    DBWeakSelf
     [BaseNetTool GetCarListParams:nil block:^(DBCartModel *model, NSError *error) {
-        self.dataSource = (NSMutableArray *)model.cartList;
-        
-        if (self.dataSource.count) {
+        weakSelf.dataSource = (NSMutableArray *)model.cartList;
+        if (weakSelf.dataSource.count) {
+            // 1.先刷新数据
             [self.tabView reloadData];
-            
             [self.tabView hideNoDataView];
+            
+            weakSelf.cartModel = model;
+            
+            //2. 后检查购物车商品选中状态
+            weakSelf.bottomBar.cartModel = model;
+            if (model.cartTotalModel.goodsCount == model.cartTotalModel.checkedGoodsCount) { // 全选中状态
+                [weakSelf dealselectRowArrName:@"resultBuyArr"];
+                [self checkProductData:weakSelf.dataSource checked:YES];
+            } else { // 非全选中状态
+                [model.cartList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    DBCarListModel *listModel = model.cartList[idx];
+                    if (listModel.checked.intValue && [model.cartList containsObject:listModel]) {
+                        [self.resultBuyArr addObject:@(idx)];
+                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+                        [weakSelf.tabView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+                    }
+                }];
+            }
+            
         } else {
             [self.tabView showNoDataViewImg:@"购物车" hintText:@"购物车空空如也~" btnTitle:@"去逛逛"];
         }
     }];
 }
-//MARK: 全选
+
+/** 每次选中商品变化请求接口数据*/
+- (void)checkProductData:(NSArray *)resultArr checked:(BOOL)checked
+{
+    DBWeakSelf
+    if (resultArr.count == 0) {
+        return;
+    }
+    __block NSString *productID = nil;
+    [resultArr enumerateObjectsUsingBlock:^(DBCarListModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (idx < 1) {
+            productID = obj.product_id;
+        } else {
+            productID = [NSString stringWithFormat:@"%@,%@", productID,obj.product_id];
+        }
+    }];
+    
+    NSDictionary *dict = @{@"productIds": productID ,
+                           @"isChecked":@(checked)
+                               };
+    
+    [BaseNetTool GetCarCheckParams:dict block:^(DBCartModel *model, NSError *error) {
+        weakSelf.bottomBar.cartModel = model;
+    }];
+}
+//MARK: 全选点击
 - (void)dealChooseAllBlock
 {
     MJWeakSelf
@@ -100,6 +130,8 @@
             } else {
                 [weakSelf.resultBuyArr removeAllObjects];
                 [weakSelf dealselectRowArrName:@"resultBuyArr"];
+                // 全选后重新拉取数据
+                [weakSelf checkProductData:weakSelf.dataSource checked:YES];
             }
             
         } else {
@@ -108,6 +140,8 @@
                 [weakSelf dealDeselectRowArrName:@"resultDelArr"];
             } else {
                 [weakSelf dealDeselectRowArrName:@"resultBuyArr"];
+                // 取消全选后重新拉取数据
+                [weakSelf checkProductData:weakSelf.dataSource checked:NO];
             }
         }
     };
@@ -134,7 +168,7 @@
         [self.tabView deselectRowAtIndexPath:indexPath animated:NO];
     }
 }
-//MARK: 编辑
+//MARK: 编辑点击
 - (void)dealEditBlock
 {
     MJWeakSelf
@@ -144,20 +178,31 @@
         
         weakSelf.isEditing = isSelected;
         
-        if (isSelected) {
+        if (isSelected) {// 编辑
             //全部取消选中(默认)
             [weakSelf dealDeselectRowArrName:@"resultDelArr"];
             weakSelf.resultDelArr = [NSMutableArray array];
-        } else {
-            // 重新选择购买的
+        } else { // 非编辑
+            // 重新选中
             for (NSInteger i = 0; i < weakSelf.resultBuyArr.count; i ++) {
                 NSInteger row = [weakSelf.resultBuyArr[i] integerValue];
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
                 [weakSelf.tabView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
             }
             // 重新赋值
-            weakSelf.resultBuyArr = weakSelf.resultBuyArr;;
+            weakSelf.resultBuyArr = weakSelf.resultBuyArr;
+            [weakSelf loadCartListData];
         }
+    };
+}
+
+//MARK: 删除点击
+- (void)dealDeleteBlock
+{
+    DBWeakSelf
+    self.bottomBar.deleteBlock = ^(NSArray *deleteArr) {
+        [weakSelf.dataSource removeObjectsInArray:deleteArr];
+        [weakSelf.tabView reloadData];
     };
 }
 #pragma mark -- datesource &&  delegate --
@@ -186,18 +231,20 @@
 {
     DBLog(@"点击的cell：%ld", (long)indexPath.row);
     
-    if (_isEditing) {
-        [[self mutableArrayValueForKey:@"resultDelArr"] addObject:@(indexPath.row)];
+    if (_isEditing) { // 编辑状态下
+        [[self mutableArrayValueForKey:@"resultDelArr"] addObject:self.dataSource[indexPath.row]];
     } else {
         [[self mutableArrayValueForKey:@"resultBuyArr"] addObject:@(indexPath.row)];
+        [self checkProductData:@[self.dataSource[indexPath.row]] checked:YES];
     }
 }
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_isEditing) {
-         [[self mutableArrayValueForKey:@"resultDelArr"] removeObject:@(indexPath.row)];
+         [[self mutableArrayValueForKey:@"resultDelArr"] removeObject:self.dataSource[indexPath.row]];
     } else {
          [[self mutableArrayValueForKey:@"resultBuyArr"] removeObject:@(indexPath.row)];
+        [self checkProductData:@[self.dataSource[indexPath.row]] checked:NO];
     }
    
 }
@@ -210,20 +257,42 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"self.resultBuyArr"]) {
-        self.bottomBar.dataArr = self.resultBuyArr;
+        self.bottomBar.resultBuyArr = self.resultBuyArr;
         if (self.resultBuyArr.count != self.dataSource.count) {
             self.bottomBar.tickImgBtn.selected = NO;
         } else {
             self.bottomBar.tickImgBtn.selected = YES;
+            [self checkProductData:self.dataSource checked:YES];
         }
     } else if([keyPath isEqualToString:@"self.resultDelArr"]) {
-        self.bottomBar.dataArr = self.resultDelArr;
+        self.bottomBar.resultDelArr = self.resultDelArr;
         if (self.resultDelArr.count != self.dataSource.count) {
             self.bottomBar.tickImgBtn.selected = NO;
         } else {
             self.bottomBar.tickImgBtn.selected = YES;
         }
     }
+}
+
+#pragma mark -- view --
+- (UIView *)sloganV:(NSArray *)textArr
+{
+    UIView *sloganV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 35)];
+    sloganV.backgroundColor = kBgColor;
+    for (NSInteger i = 0; i < textArr.count; i ++) {
+        UILabel *slogan = [[UILabel alloc] initWithFrame:CGRectMake(30+kScreenWidth/3.0 *i, 0, kScreenWidth/3.0, 35)];
+        slogan.text = textArr[i];
+        slogan.font = kFont(13);
+        [sloganV addSubview:slogan];
+        UIView *circle = [[UIView alloc] init];
+        circle.frame = CGRectMake(-10, 0, 5, 5);
+        circle.centerY = slogan.centerY;
+        circle.layer.cornerRadius = 2.5;
+        circle.layer.borderWidth = 1;
+        circle.layer.borderColor = kMainColor.CGColor;
+        [slogan addSubview:circle];
+    }
+    return sloganV;
 }
 
 #pragma mark -- lazy --
@@ -252,9 +321,6 @@
 {
     if (_dataSource == nil) {
         _dataSource = [NSMutableArray array];
-//        for (NSInteger i = 1; i <= 20; i++) {
-//            [_dataSource addObject:[NSString stringWithFormat:@"打两节课的价位大%02ld", (long)i]];
-//        }
     }
     return _dataSource;
 }

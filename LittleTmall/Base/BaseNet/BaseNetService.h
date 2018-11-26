@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AFNetworking.h>
 
 @interface BaseNetService : NSObject
-
-+ (void)PostWithUrl:(nonnull NSString * )urlString parameters:(nullable NSDictionary * ) parameters success:(void(^)(id responseObject))successBlock failure:(void(^)(NSError *error))failureBlock;
++ (AFHTTPSessionManager *)manager ;
++ (void)PostWithUrl:(nonnull NSString * )urlString parameters:(nullable id) parameters success:(void(^)(id responseObject))successBlock failure:(void(^)(NSError *error))failureBlock;
 
 @end

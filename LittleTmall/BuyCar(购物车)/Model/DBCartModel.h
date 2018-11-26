@@ -19,6 +19,7 @@
 @property (nonatomic, copy) NSString *id;
 @property (nonatomic, copy) NSString *user_id;
 @property (nonatomic, copy) NSString *goods_id;
+@property (nonatomic, copy) NSString *product_id;
 @property (nonatomic, copy) NSString *goods_name;
 @property (nonatomic, copy) NSString *market_price;
 @property (nonatomic, copy) NSString *retail_price;

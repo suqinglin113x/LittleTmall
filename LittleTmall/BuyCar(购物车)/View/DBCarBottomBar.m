@@ -40,7 +40,6 @@
     self.tickAllBtn = tickAllBtn;
     tickAllBtn.titleLabel.font = kFont(13);
     [tickAllBtn setTitle:@"全选(0)" forState:UIControlStateNormal];
-//    [tickAllBtn setTitle:@"全选(100)" forState:UIControlStateNormal];
     [tickAllBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [tickAllBtn addTarget:self action:@selector(chooseAll:) forControlEvents:UIControlEventTouchUpInside];
    
@@ -48,7 +47,7 @@
     UILabel *allMoneyL = [[UILabel alloc] init];
     [self addSubview:allMoneyL];
     self.allMoneyL = allMoneyL;
-    allMoneyL.text = @"¥100";
+    allMoneyL.text = @"¥0.00";
     allMoneyL.textAlignment = 0;
     allMoneyL.textColor = [UIColor blackColor];
     allMoneyL.font = kFont(14);
@@ -123,22 +122,42 @@
     self.buyBtn.selected = btn.selected;
     if (btn.selected) {
         [self.buyBtn setTitle:@"删除所选" forState:UIControlStateNormal];
-        
+        self.allMoneyL.hidden = YES;
+        [self.tickAllBtn setTitle:@"全选(0)" forState:UIControlStateNormal];
     } else {
         [self.buyBtn setTitle:@"去结算" forState:UIControlStateNormal];
+        self.allMoneyL.hidden = NO;
     }
     if (self.editBlock) {
         self.editBlock(btn.selected);
     }
-    DBLog(@"编辑商品");
+    DBLog(@"编辑、完成商品");
 }
 
+/** 删除or结算*/
 - (void)buyBtnClick:(UIButton *)btn
 {
+    DBWeakSelf
     if (self.buyBtn.selected) {
-        
         DBLog(@"删除所选");
         // 去删除
+        if (_resultDelArr.count == 0) {
+            return;
+        }
+        __block NSString *deleteID = nil;
+        [_resultDelArr enumerateObjectsUsingBlock:^(DBCarListModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (idx < 1) {
+                deleteID = obj.product_id;
+            } else {
+                deleteID = [NSString stringWithFormat:@"%@,%@", deleteID,obj.product_id];
+            }
+        }];
+        NSDictionary *dict = @{@"productIds":deleteID};
+        [BaseNetTool CarListDeleteParams:dict block:^(DBCartModel *model, NSError *error) {
+            if (weakSelf.deleteBlock) {
+                weakSelf.deleteBlock(weakSelf.resultDelArr);
+            }
+        }];
         
     } else {
         DBLog(@"结算");
@@ -147,11 +166,23 @@
 }
 
 #pragma mark -- setting --
-- (void)setDataArr:(NSArray *)dataArr
+- (void)setResultDelArr:(NSArray *)resultDelArr
 {
-    _dataArr = dataArr;
-    [self.tickAllBtn setTitle:[NSString stringWithFormat:@"全选(%lu)", (unsigned long)dataArr.count] forState:UIControlStateNormal];
-    self.allMoneyL.text = [NSString stringWithFormat:@"¥%d", dataArr.count];
+    _resultDelArr = resultDelArr;
+    [self.tickAllBtn setTitle:[NSString stringWithFormat:@"全选(%d)", resultDelArr.count] forState:UIControlStateNormal];
+}
+
+- (void)setCartModel:(DBCartModel *)cartModel
+{
+    _cartModel = cartModel;
+    if(cartModel.cartTotalModel.goodsCount.intValue == cartModel.cartTotalModel.checkedGoodsCount.intValue) {
+        self.tickImgBtn.selected = YES;
+    } else {
+        self.tickImgBtn.selected = NO;
+        
+    }
+    [self.tickAllBtn setTitle:[NSString stringWithFormat:@"全选(%@)", cartModel.cartTotalModel.checkedGoodsCount] forState:UIControlStateNormal];
+    self.allMoneyL.text = [NSString stringWithFormat:@"¥%@", cartModel.cartTotalModel.checkedGoodsAmount];
     
 }
 @end
