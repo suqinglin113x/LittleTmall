@@ -24,24 +24,7 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.title = @"意见反馈";
-    UIButton *informationCardBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [informationCardBtn addTarget:self action:@selector(RightBtnCLick:) forControlEvents:UIControlEventTouchUpInside];
-    //[informationCardBtn setImage:[UIImage imageNamed:@"nav_information"] forState:UIControlStateNormal];
-    [informationCardBtn setTitle:@"diyi" forState:UIControlStateNormal];
-    
-    [informationCardBtn sizeToFit];
-    UIBarButtonItem *informationCardItem = [[UIBarButtonItem alloc] initWithCustomView:informationCardBtn];
-    
-    UIButton *settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [settingBtn addTarget:self action:@selector(RightnextCLick:) forControlEvents:UIControlEventTouchUpInside];
-    //[settingBtn setImage:[UIImage imageNamed:@"nav_settings"] forState:UIControlStateNormal];
-    [settingBtn setTitle:@"dierge" forState:UIControlStateNormal];
-    [settingBtn sizeToFit];
-    UIBarButtonItem *settingBtnItem = [[UIBarButtonItem alloc] initWithCustomView:settingBtn];
-    
-    self.navigationItem.rightBarButtonItems  = @[informationCardItem,settingBtnItem];
-
-    // 类型选择器
+   // 类型选择器
     [self setSubviews];
     
 }
@@ -80,7 +63,7 @@
     }];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
-    [upImageview addGestureRecognizer:tap];
+    [topview addGestureRecognizer:tap];
     
     DBTextView *textView = [[DBTextView alloc] initWithFrame:CGRectMake(0, 72, kScreenWidth, 187)];
     textView.placeholderColor = kTextColor;
