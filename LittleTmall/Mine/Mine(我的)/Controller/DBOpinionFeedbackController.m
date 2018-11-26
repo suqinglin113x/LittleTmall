@@ -40,7 +40,7 @@
     
     UILabel *topLeftType = [[UILabel alloc] init];
     topLeftType.text = @"请选择反馈类型";
-    topLeftType.font = kFont(12);
+    topLeftType.font = kFont(15);
     topLeftType.textColor = kTextColor;
     [topview addSubview:topLeftType];
     [topLeftType mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -68,7 +68,7 @@
     DBTextView *textView = [[DBTextView alloc] initWithFrame:CGRectMake(0, 72, kScreenWidth, 187)];
     textView.placeholderColor = kTextColor;
     textView.textColor = kTextColor;
-    textView.textFont = kFont(12);
+    textView.textFont = kFont(15);
     textView.textMaxNum = 500;
     textView.leftAndRightSpace = 18;
     textView.borderLineColor = [UIColor  whiteColor];
@@ -82,7 +82,7 @@
 
     UILabel *phoneLabel = [[UILabel alloc] init];
     phoneLabel.text = @"手机号码";
-    phoneLabel.font = kFont(10);
+    phoneLabel.font = kFont(13);
     phoneLabel.textColor = UIColorFromHex(0xCACACA);
     [self.view addSubview:phoneLabel];
     [phoneLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -101,7 +101,7 @@
     
     UITextField *connectTextField = [[UITextField alloc] init];
     connectTextField.placeholder = @"方便我们与你联系";
-    connectTextField.font = kFont(10);
+    connectTextField.font = kFont(13);
     connectTextField.keyboardType = UIKeyboardTypeNumberPad;
     connectTextField.delegate = self;
     connectTextField.textColor = UIColorFromHex(0x7c7c7c);
@@ -119,7 +119,7 @@
     
     UIButton *bottomBtn = [[UIButton alloc] init];
     [bottomBtn setTitle:@"提交" forState:(UIControlStateNormal)];
-    bottomBtn.titleLabel.font = kFont(12);
+    bottomBtn.titleLabel.font = kFont(15);
     bottomBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     bottomBtn.backgroundColor =UIColorFromHex(0xB4302D);
     [bottomBtn addTarget:self action:@selector(submitAction:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -132,12 +132,7 @@
     
     
 }
-- (void)RightBtnCLick:(UIButton *)btn{
-    DBLog(@"dierge");
-}
-- (void)RightnextCLick:(UIButton *)btn{
-    DBLog(@"diyige");
-}
+
 - (void)tapAction{
     NSDictionary *dict = @{ ZJPickerViewPropertyIsTouchBackgroundHideKey : @YES,
                              ZJPickerViewPropertyIsShowSelectContentKey : @YES,

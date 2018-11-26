@@ -283,12 +283,6 @@
 			children = (
 				664B42F8219E90DC009F1E08 /* DBCategoryViewController.h */,
 				664B42F9219E90DC009F1E08 /* DBCategoryViewController.m */,
-				B5DF9F1C21ABCBBD007A0A61 /* NSString+DBTool.h */,
-				B5DF9F1D21ABCBBD007A0A61 /* NSString+DBTool.m */,
-				B5DF9F3921ABFBA0007A0A61 /* UITextView+XMExtension.h */,
-				B5DF9F3A21ABFBA0007A0A61 /* UITextView+XMExtension.m */,
-				B5DF9F1F21ABD8BF007A0A61 /* DBTool.h */,
-				B5DF9F2021ABD8BF007A0A61 /* DBTool.m */,
 			);
 			path = "Categories(分类)";
 			sourceTree = "<group>";
@@ -320,9 +314,12 @@
 		664B42FE219E9912009F1E08 /* OtherFiles */ = {
 			isa = PBXGroup;
 			children = (
+				87D74FED219F192800D797FE /* Category */,
 				664B4307219EDC2E009F1E08 /* Libs */,
 				664B4300219E9BE9009F1E08 /* PrefixHeader.pch */,
 				664B42FF219E9932009F1E08 /* Macro.h */,
+				B5DF9F2521ABDDDB007A0A61 /* DBConst.h */,
+				B5DF9F2621ABDDDB007A0A61 /* DBConst.m */,
 			);
 			path = OtherFiles;
 			sourceTree = "<group>";
@@ -340,7 +337,8 @@
 		664B4307219EDC2E009F1E08 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				87D74FED219F192800D797FE /* Category */,
+				B5DF9F2B21ABEDC7007A0A61 /* ZJPickerView.h */,
+				B5DF9F2C21ABEDC7007A0A61 /* ZJPickerView.m */,
 			);
 			path = Libs;
 			sourceTree = "<group>";
@@ -399,8 +397,6 @@
 				87D74FFE21A03E7000D797FE /* DBMineBottomView.m */,
 				8730BED721A05A9500199CC8 /* DBMineBottomCell.h */,
 				8730BED821A05A9500199CC8 /* DBMineBottomCell.m */,
-				B5DF9F2B21ABEDC7007A0A61 /* ZJPickerView.h */,
-				B5DF9F2C21ABEDC7007A0A61 /* ZJPickerView.m */,
 				B5DF9F4021AC027F007A0A61 /* DBTextView.h */,
 				B5DF9F4121AC027F007A0A61 /* DBTextView.m */,
 			);
@@ -473,6 +469,8 @@
 				66E1922021A7A97E00605E0A /* BaseNetTool.m */,
 				66E1925521A7E2D900605E0A /* BaseUserTool.h */,
 				66E1925621A7E2D900605E0A /* BaseUserTool.m */,
+				B5DF9F1F21ABD8BF007A0A61 /* DBTool.h */,
+				B5DF9F2021ABD8BF007A0A61 /* DBTool.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -499,8 +497,10 @@
 				66E1921321A69A6400605E0A /* UIViewController+HUD.m */,
 				87BB8CCB21AA264C00B767FC /* MBProgressHUD+MJ.h */,
 				87BB8CCA21AA264C00B767FC /* MBProgressHUD+MJ.m */,
-				B5DF9F2521ABDDDB007A0A61 /* DBConst.h */,
-				B5DF9F2621ABDDDB007A0A61 /* DBConst.m */,
+				B5DF9F1C21ABCBBD007A0A61 /* NSString+DBTool.h */,
+				B5DF9F1D21ABCBBD007A0A61 /* NSString+DBTool.m */,
+				B5DF9F3921ABFBA0007A0A61 /* UITextView+XMExtension.h */,
+				B5DF9F3A21ABFBA0007A0A61 /* UITextView+XMExtension.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
