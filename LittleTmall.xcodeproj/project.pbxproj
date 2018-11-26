@@ -50,6 +50,12 @@
 		87D74FF8219F19CF00D797FE /* DBMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D74FF7219F19CF00D797FE /* DBMineViewController.m */; };
 		87D74FFB219FF38A00D797FE /* DBMineTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D74FFA219FF38A00D797FE /* DBMineTopView.m */; };
 		87D74FFF21A03E7000D797FE /* DBMineBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D74FFE21A03E7000D797FE /* DBMineBottomView.m */; };
+		B5DF9F1E21ABCBBD007A0A61 /* NSString+DBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DF9F1D21ABCBBD007A0A61 /* NSString+DBTool.m */; };
+		B5DF9F2121ABD8BF007A0A61 /* DBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DF9F2021ABD8BF007A0A61 /* DBTool.m */; };
+		B5DF9F2721ABDDDB007A0A61 /* DBConst.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DF9F2621ABDDDB007A0A61 /* DBConst.m */; };
+		B5DF9F2D21ABEDC7007A0A61 /* ZJPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DF9F2C21ABEDC7007A0A61 /* ZJPickerView.m */; };
+		B5DF9F3C21ABFBA0007A0A61 /* UITextView+XMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DF9F3A21ABFBA0007A0A61 /* UITextView+XMExtension.m */; };
+		B5DF9F4221AC027F007A0A61 /* DBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DF9F4121AC027F007A0A61 /* DBTextView.m */; };
 		DE14E1DF64B4EF314B090F42 /* libPods-LittleTmall.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 544E3723C93DCA6DA3558ACD /* libPods-LittleTmall.a */; };
 /* End PBXBuildFile section */
 
@@ -160,6 +166,18 @@
 		87D74FFA219FF38A00D797FE /* DBMineTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBMineTopView.m; sourceTree = "<group>"; };
 		87D74FFD21A03E7000D797FE /* DBMineBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBMineBottomView.h; sourceTree = "<group>"; };
 		87D74FFE21A03E7000D797FE /* DBMineBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBMineBottomView.m; sourceTree = "<group>"; };
+		B5DF9F1C21ABCBBD007A0A61 /* NSString+DBTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+DBTool.h"; sourceTree = "<group>"; };
+		B5DF9F1D21ABCBBD007A0A61 /* NSString+DBTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+DBTool.m"; sourceTree = "<group>"; };
+		B5DF9F1F21ABD8BF007A0A61 /* DBTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBTool.h; sourceTree = "<group>"; };
+		B5DF9F2021ABD8BF007A0A61 /* DBTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBTool.m; sourceTree = "<group>"; };
+		B5DF9F2521ABDDDB007A0A61 /* DBConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBConst.h; sourceTree = "<group>"; };
+		B5DF9F2621ABDDDB007A0A61 /* DBConst.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBConst.m; sourceTree = "<group>"; };
+		B5DF9F2B21ABEDC7007A0A61 /* ZJPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJPickerView.h; sourceTree = "<group>"; };
+		B5DF9F2C21ABEDC7007A0A61 /* ZJPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJPickerView.m; sourceTree = "<group>"; };
+		B5DF9F3921ABFBA0007A0A61 /* UITextView+XMExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+XMExtension.h"; sourceTree = "<group>"; };
+		B5DF9F3A21ABFBA0007A0A61 /* UITextView+XMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+XMExtension.m"; sourceTree = "<group>"; };
+		B5DF9F4021AC027F007A0A61 /* DBTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBTextView.h; sourceTree = "<group>"; };
+		B5DF9F4121AC027F007A0A61 /* DBTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBTextView.m; sourceTree = "<group>"; };
 		CF706C28EF97FF6CEFB79929 /* Pods-LittleTmall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LittleTmall.release.xcconfig"; path = "Pods/Target Support Files/Pods-LittleTmall/Pods-LittleTmall.release.xcconfig"; sourceTree = "<group>"; };
 		F2F506574A56FB9BA1403BE6 /* Pods-LittleTmall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LittleTmall.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LittleTmall/Pods-LittleTmall.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -265,6 +283,12 @@
 			children = (
 				664B42F8219E90DC009F1E08 /* DBCategoryViewController.h */,
 				664B42F9219E90DC009F1E08 /* DBCategoryViewController.m */,
+				B5DF9F1C21ABCBBD007A0A61 /* NSString+DBTool.h */,
+				B5DF9F1D21ABCBBD007A0A61 /* NSString+DBTool.m */,
+				B5DF9F3921ABFBA0007A0A61 /* UITextView+XMExtension.h */,
+				B5DF9F3A21ABFBA0007A0A61 /* UITextView+XMExtension.m */,
+				B5DF9F1F21ABD8BF007A0A61 /* DBTool.h */,
+				B5DF9F2021ABD8BF007A0A61 /* DBTool.m */,
 			);
 			path = "Categories(分类)";
 			sourceTree = "<group>";
@@ -375,6 +399,10 @@
 				87D74FFE21A03E7000D797FE /* DBMineBottomView.m */,
 				8730BED721A05A9500199CC8 /* DBMineBottomCell.h */,
 				8730BED821A05A9500199CC8 /* DBMineBottomCell.m */,
+				B5DF9F2B21ABEDC7007A0A61 /* ZJPickerView.h */,
+				B5DF9F2C21ABEDC7007A0A61 /* ZJPickerView.m */,
+				B5DF9F4021AC027F007A0A61 /* DBTextView.h */,
+				B5DF9F4121AC027F007A0A61 /* DBTextView.m */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -471,6 +499,8 @@
 				66E1921321A69A6400605E0A /* UIViewController+HUD.m */,
 				87BB8CCB21AA264C00B767FC /* MBProgressHUD+MJ.h */,
 				87BB8CCA21AA264C00B767FC /* MBProgressHUD+MJ.m */,
+				B5DF9F2521ABDDDB007A0A61 /* DBConst.h */,
+				B5DF9F2621ABDDDB007A0A61 /* DBConst.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -539,7 +569,6 @@
 				664B42AB219E6E3B009F1E08 /* Sources */,
 				664B42AC219E6E3B009F1E08 /* Frameworks */,
 				664B42AD219E6E3B009F1E08 /* Resources */,
-				A8127276D157551252F9AA03 /* [CP] Embed Pods Frameworks */,
 				AC2D73943E25B35296079447 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -668,28 +697,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LittleTmall-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		A8127276D157551252F9AA03 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LittleTmall/Pods-LittleTmall-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AC2D73943E25B35296079447 /* [CP] Copy Pods Resources */ = {
@@ -698,9 +715,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LittleTmall/Pods-LittleTmall-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -725,17 +747,21 @@
 				87BB8CCC21AA264C00B767FC /* MBProgressHUD+MJ.m in Sources */,
 				87D74FFF21A03E7000D797FE /* DBMineBottomView.m in Sources */,
 				66E1925B21A9569C00605E0A /* DBCartModel.m in Sources */,
+				B5DF9F2D21ABEDC7007A0A61 /* ZJPickerView.m in Sources */,
 				66570CC721AA90CC003406BA /* DBOrderListsCell.m in Sources */,
 				87D74FF0219F194200D797FE /* UIView+category.m in Sources */,
 				8730BED921A05A9500199CC8 /* DBMineBottomCell.m in Sources */,
+				B5DF9F2721ABDDDB007A0A61 /* DBConst.m in Sources */,
 				66E1918521A5046400605E0A /* DBAddressCell.m in Sources */,
 				66E1921D21A6B21A00605E0A /* DBOpinionFeedbackController.m in Sources */,
 				66E1920D21A6857100605E0A /* ZHFAddTitleAddressView.m in Sources */,
 				66E1925321A7E1C300605E0A /* DBLoginModel.m in Sources */,
 				66E1920B21A6857100605E0A /* ProvinceModel.m in Sources */,
 				8730BEDC21A0696100199CC8 /* UITableView+EmptyDataView.m in Sources */,
+				B5DF9F3C21ABFBA0007A0A61 /* UITextView+XMExtension.m in Sources */,
 				66842C0721A29CAC00590CCB /* DBCarBottomBar.m in Sources */,
 				66E1921021A6879800605E0A /* DBAddressModel.m in Sources */,
+				B5DF9F4221AC027F007A0A61 /* DBTextView.m in Sources */,
 				66842C0A21A2C68F00590CCB /* DBCarBuyCell.m in Sources */,
 				66E1924F21A7E19800605E0A /* BaseModel.m in Sources */,
 				87D74FF5219F19C200D797FE /* DBBuyCarViewController.m in Sources */,
@@ -744,11 +770,13 @@
 				87D74FFB219FF38A00D797FE /* DBMineTopView.m in Sources */,
 				66570CBD21AA669D003406BA /* DBAccountViewController.m in Sources */,
 				66E1921421A69A6400605E0A /* UIViewController+HUD.m in Sources */,
+				B5DF9F2121ABD8BF007A0A61 /* DBTool.m in Sources */,
 				66E1921721A69B7C00605E0A /* NSString+RegexCategory.m in Sources */,
 				664B42FD219E918C009F1E08 /* DBBaseViewController.m in Sources */,
 				664B42E7219E8AA3009F1E08 /* DBBaseTabBarController.m in Sources */,
 				87D74FF8219F19CF00D797FE /* DBMineViewController.m in Sources */,
 				664B4305219EB5FD009F1E08 /* BaseNetService.m in Sources */,
+				B5DF9F1E21ABCBBD007A0A61 /* NSString+DBTool.m in Sources */,
 				664B42FA219E90DC009F1E08 /* DBCategoryViewController.m in Sources */,
 				66570CC421AA893A003406BA /* DBOrderListViewController.m in Sources */,
 			);
