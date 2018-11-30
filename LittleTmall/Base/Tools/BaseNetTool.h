@@ -11,7 +11,7 @@
 #import "DBAddressModel.h"
 #import "DBCartModel.h"
 #import "DBOrderListModel.h"
-
+#import "DBVerifyOrderModel.h"
 
 @interface BaseNetTool : NSObject
 
@@ -33,6 +33,18 @@
 /** 购物车列表*/
 + (void)GetCarListParams:(NSDictionary *)params block:(void(^)(DBCartModel *model, NSError *error))block;
 
+/** 购物车删除*/
++ (void)CarListDeleteParams:(NSDictionary *)params block:(void(^)(DBCartModel *model, NSError *error))block;
+
+/** 购物车选中否*/
++ (void)GetCarCheckParams:(NSDictionary *)params block:(void(^)(DBCartModel *model, NSError *error))block;
+
+/** 商品数量选择器*/
++ (void)CarNumPickParams:(NSDictionary *)params block:(void(^)(DBCartModel *model, NSError *error))block;
+
+/** 商品付款订单*/
++ (void)GetVerifyOrderParams:(NSDictionary *)params block:(void(^)(DBVerifyOrderModel *model, NSError *error))block;
+
 /** 我的*/
 + (void)GetMineParams:(NSDictionary *)params block:(void(^)(NSString *coinStr, NSError *error))block;
 
@@ -41,6 +53,9 @@
 
 /** 退出*/
 + (void)SignoutParams:(NSDictionary *)params block:(void(^)(id response, NSError *error))block;
+
+/** 意见反馈*/
++(void)OpinionFeedbackParams:(NSDictionary *)params block:(void(^)(id response,NSError *error))block;
 
 
 

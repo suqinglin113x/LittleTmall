@@ -45,15 +45,15 @@
 
 - (void)createUI
 {
+    CGFloat leftMargin = 15 *kScale;
     CGFloat totalH = 0;
     NSArray *placeHolder = @[@"姓名", @"手机号码", @"省份、城市、区县", @"详细地址，如街道、楼盘号等"];
     for (NSInteger i = 0; i < placeHolder.count; i ++) {
         UITextField *textField = [[UITextField alloc] init];
         textField.placeholder = placeHolder[i];
-        textField.textColor = [UIColor blackColor];
+        textField.textColor = kTextColor;
         textField.backgroundColor = [UIColor whiteColor];
         textField.font = kFont(15);
-        CGFloat leftMargin = 15 *kScale;
         UIView *leftV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, leftMargin, 1)];
         textField.leftView = leftV;
         textField.leftViewMode = UITextFieldViewModeAlways;
@@ -92,14 +92,15 @@
     UIButton *defaultBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:defaultBtn];
     self.defaultBtn =  defaultBtn;
-    defaultBtn.frame = CGRectMake(0, totalH + 20 *kScale, kScreenWidth *0.5, 50);
-    defaultBtn.centerX = self.view.centerX;
+    defaultBtn.frame = CGRectMake(leftMargin, totalH + 20 *kScale, kScreenWidth *0.5, 50);
     defaultBtn.selected = self.addressModel.isDefault;
-    [defaultBtn setImage:[UIImage imageNamed:@"circle_nosel"] forState:UIControlStateNormal];
-    [defaultBtn setImage:[UIImage imageNamed:@"circle_sel"] forState:UIControlStateSelected];
+    [defaultBtn setImage:[UIImage imageNamed:@"CellButton"] forState:UIControlStateNormal];
+    [defaultBtn setImage:[UIImage imageNamed:@"CellButtonSelected"] forState:UIControlStateSelected];
     [defaultBtn setTitle:@"设为默认地址" forState:UIControlStateNormal];
+    defaultBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [defaultBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
     [defaultBtn.titleLabel setFont:kFont(15)];
-    [defaultBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [defaultBtn setTitleColor:kTextColor forState:UIControlStateNormal];
     [defaultBtn addTarget:self action:@selector(setDefaultAddress:) forControlEvents:UIControlEventTouchUpInside];
 
     [self bottomView];
@@ -114,7 +115,7 @@
     [cancelbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [cancelbtn setTitle:@"取消" forState:UIControlStateNormal];
     [cancelbtn.titleLabel  setFont:kFont(15)];
-    cancelbtn.backgroundColor = [UIColor blackColor];
+    cancelbtn.backgroundColor = UIColorFromHex(0xBBBBBB);
     [self.view addSubview:cancelbtn];
     
     UIButton *saveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -123,7 +124,7 @@
     [saveBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [saveBtn setTitle:@"保存" forState:UIControlStateNormal];
     [saveBtn.titleLabel  setFont:kFont(15)];
-    saveBtn.backgroundColor = kMainColor;
+    [saveBtn az_setGradientBackgroundWithColors:@[kMainBeginColor, kMainEndColor] locations:nil startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1, 0)];
     [self.view addSubview:saveBtn];
 }
 #pragma mark -- action --
@@ -170,10 +171,22 @@
 //        if (self.saveAddressBlock) {
 //            self.saveAddressBlock(model);
 //        }
-        NSDictionary *dict = @{@"userName":self.userNameTF.text,
+        NSDictionary *dict = @{
+                               @"id":@(self.addressModel.id),
+                               @"userName":self.userNameTF.text,
                                @"telNumber":self.phoneNumTF.text,
                                @"provinceName":self.addressTF.text,
-                               @"detailInfo":self.detailAddressTF.text
+                               @"detailInfo":self.detailAddressTF.text,
+//                               @"province_id":@4,
+//                               @"city_id":@115,
+//                               @"district_id":@9939,
+                               @"is_default":@(self.defaultBtn.selected),
+                               @"cityName":@"",
+                               @"countyName":@"",
+//                               @"province":@4,
+//                               @"city":@115,
+//                               @"district":@9939,
+//                               @"town":@0
                                };
         [BaseNetTool SaveAddressParams:dict block:^(DBAddressModel *model, NSError *error) {
             
@@ -184,6 +197,7 @@
 }
 
 -(void)cancelBtnClick:(NSString *)titleAddress titleID:(NSString *)titleID{
+    NSArray * arrs = [titleAddress componentsSeparatedByString:@" "];
     NSString *title = [titleAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     self.addressTF.text = !title.length?self.addressTF.text:titleAddress;
     NSLog( @"%@", [NSString stringWithFormat:@"打印的对应省市县的id=%@",titleAddress]);

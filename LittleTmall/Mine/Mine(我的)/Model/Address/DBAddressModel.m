@@ -17,7 +17,7 @@
     if (dicArr && [dicArr isKindOfClass:[NSArray class]]) {
         for (NSDictionary *dict in dicArr) {
             DBAddressModel *model = [DBAddressModel modelWithDict:dict];
-            model.full_address = [model.full_region stringByAppendingString:model.detailInfo];
+           
             [temArr addObject:model];
         }
     }
@@ -26,9 +26,20 @@
 
 + (instancetype)modelWithDict:(NSDictionary *)dict
 {
+    dict = [self nullConvert:[dict mutableCopy]];
     DBAddressModel *model = [[DBAddressModel alloc] init];
     [model setValuesForKeysWithDictionary:dict];
+    model.full_address = [model.full_region stringByAppendingString:[NSString stringWithFormat:@" %@", model.detailInfo]];
     return model;
 }
 
++ (NSDictionary *)nullConvert:(NSMutableDictionary *)dict;
+{
+    for (NSString *key in dict.allKeys) {
+        if ([dict[key] isKindOfClass:[NSNull class]] || ([dict[key] isKindOfClass:[NSString class]] && [dict[key] containsString:@"null"])) {
+            dict[key] = nil;
+        }
+    }
+    return dict;
+}
 @end

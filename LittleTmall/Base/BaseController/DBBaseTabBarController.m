@@ -45,13 +45,13 @@
 /** add childVCs*/
 - (void)SetupAllControllers {
     
-    [self addChildVc:[DBMainViewController new] title:@"首页" image:@"账单点击前" selectedImage:@"账单点击后"];
+    [self addChildVc:[DBMainViewController new] title:@"首页" image:@"tabbar_home_normal" selectedImage:@"tabbar_home_selected"];
     
-    [self addChildVc:[DBCategoryViewController new] title:@"类目" image:@"图表点击前" selectedImage:@"图表点击后"];
+    [self addChildVc:[DBCategoryViewController new] title:@"类目" image:@"tabbar_menu_normal" selectedImage:@"tabbar_menu_selected"];
    
-    [self addChildVc:[DBBuyCarViewController new] title:@"购物车" image:@"流水点击前" selectedImage:@"流水点击后"];
+    [self addChildVc:[DBBuyCarViewController new] title:@"购物车" image:@"tabbar_shoppingcart_normal" selectedImage:@"tabbar_shoppingcart_selected"];
     
-    [self addChildVc:[DBMineViewController new] title:@"我的" image:@"我的点击前" selectedImage:@"我的点击后"];
+    [self addChildVc:[DBMineViewController new] title:@"我的" image:@"tabbar_my_normal" selectedImage:@"tabbar_my_selected"];
     
 }
 

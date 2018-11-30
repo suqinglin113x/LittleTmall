@@ -7,7 +7,6 @@
 //
 
 #import "BaseNetService.h"
-#import <AFNetworking.h>
 
 @implementation BaseNetService
 
@@ -16,7 +15,7 @@
     NSMutableDictionary *mutDic = [NSMutableDictionary dictionary];
 //    [mutDic setValue:@"ios" forKey:@"device"];
 #warning token写死
-    [mutDic setValue:@"1f8kapb1xinuc0l002k7e6jxei460wds" forKey:@"X-Nideshop-Token"];
+    [mutDic setValue:@"vcctzn9c3lr7quk0op7k2meniaasygx5" forKey:@"X-Nideshop-Token"];
     return mutDic;
 }
 + (AFHTTPSessionManager *)manager {
@@ -24,6 +23,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects: @"application/json", @"text/json", @"text/javascript", @"text/html", nil];
         manager.requestSerializer.timeoutInterval = 10;
         NSDictionary *headerDic = [BaseNetService headerDic];
@@ -35,7 +35,7 @@
     return manager;
 }
 
- + (void)PostWithUrl:(NSString *)urlString parameters:(NSDictionary *)parameters success:(void (^)(id))successBlock failure:(void (^)(NSError *))failureBlock
+ + (void)PostWithUrl:(NSString *)urlString parameters:(id )parameters success:(void (^)(id))successBlock failure:(void (^)(NSError *))failureBlock
 {
     DBLog(@"网络请求========url:%@\n;parameters=========:%@\n",urlString, parameters);
     

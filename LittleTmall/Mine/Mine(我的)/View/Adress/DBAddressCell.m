@@ -9,7 +9,7 @@
 #import "DBAddressCell.h"
 #import "DBAddressModel.h"
 
-#define margin 10 *kScale
+#define margin 15 *kScale
 
 @interface DBAddressCell ()
 @property (nonatomic, strong) UILabel *userNameL;
@@ -36,20 +36,20 @@
     [self.contentView addSubview:self.userNameL];
     self.userNameL.font = kFont(15);
     self.userNameL.textAlignment = 0;
-    self.userNameL.textColor = [UIColor blackColor];
+    self.userNameL.textColor = kTextColor;
     
     self.phoneNumL = [[UILabel alloc] init];
     [self.contentView addSubview:self.phoneNumL];
     self.phoneNumL.font = kFont(15);
     self.phoneNumL.textAlignment = 0;
-    self.phoneNumL.textColor = [UIColor blackColor];
+    self.phoneNumL.textColor = kTextColor;
     
     self.addressL = [[UILabel alloc] init];
     [self.contentView addSubview:self.addressL];
     self.addressL.font = kFont(14);
     self.addressL.textAlignment = 0;
     self.addressL.numberOfLines = 3;
-    self.addressL.textColor = [UIColor blackColor];
+    self.addressL.textColor = kTextColor;
     
     self.deleteBtn = [[UIButton alloc] init];
     [self.contentView addSubview:self.deleteBtn];
@@ -71,15 +71,16 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.userNameL.frame = CGRectMake(margin, margin *0.6, 80 *kScale, 30 *kScale);
+    self.userNameL.frame = CGRectMake(margin, margin *0.6, 75 *kScale, 30 *kScale);
     self.phoneNumL.frame = CGRectMake(self.userNameL.right, self.userNameL.top, 150 *kScale, 30 *kScale);
-    self.deleteBtn.frame = CGRectMake(self.contentView.width - 30 *kScale, 0, 20 *kScale, 50 *kScale);
+    self.deleteBtn.frame = CGRectMake(self.contentView.width - 40 *kScale, 0, 30 *kScale, 50 *kScale);
     self.deleteBtn.centerY = self.contentView.centerY;
     self.addressL.frame = CGRectMake(self.phoneNumL.origin.x, self.phoneNumL.bottom - margin *0.8, 240 *kScale, 50 *kScale);
     self.tagL.frame = CGRectMake(self.userNameL.origin.x, self.userNameL.bottom, 30 *kScale, 15 *kScale);
     
 }
 
+#pragma mark -- set --
 - (void)setAddressModel:(DBAddressModel *)addressModel
 {
     _addressModel = addressModel;
@@ -90,10 +91,25 @@
 
 }
 
+- (void)setIsFromCart:(BOOL)isFromCart
+{
+    _isFromCart = isFromCart;
+    if (isFromCart) {
+        [self.deleteBtn setImage:[UIImage imageNamed:@"address_edit"] forState:UIControlStateNormal];
+    }
+}
+
+#pragma mark --- action --
 - (void)deleteBtnClick:(UIButton *)btn
 {
     DBLog(@"点击删除操作");
-    [self showAlertmessage:@"确认要删除地址"];
+    if (_isFromCart) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(deleOrEditAddress:)]) {
+            [self.delegate deleOrEditAddress:self.addressModel];
+        }
+    } else {
+        [self showAlertmessage:@"确认要删除地址"];
+    }
 }
 
 - (void)deleteAddress
@@ -101,8 +117,8 @@
     DBWeakSelf
     NSDictionary *dict = @{@"id":@(self.addressModel.id)};
     [BaseNetTool DeleteAddressParams:dict block:^(id response, NSError *error) {
-        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(deleAddress:)]) {
-            [weakSelf.delegate deleAddress:weakSelf.addressModel];
+        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(deleOrEditAddress:)]) {
+            [weakSelf.delegate deleOrEditAddress:weakSelf.addressModel];
         }
     }];
 }

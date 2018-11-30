@@ -25,7 +25,7 @@
  */
 @property (nonatomic, strong) UILabel *userNameL;
 
-
+@property (nonatomic, strong) UIView *moneyView;
 /**
  平台币可用余额
  */
@@ -53,31 +53,37 @@
 {
     self.bgImageV = [[UIImageView alloc] init];
     [self addSubview:self.bgImageV];
-    self.bgImageV.layer.cornerRadius = 5 *kScale;
-    self.bgImageV.backgroundColor = [UIColor blackColor];
+    [self.bgImageV az_setGradientBackgroundWithColors:@[kMainBeginColor, kMainEndColor] locations:nil startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1, 0)];
     
     self.headImageV = [[UIImageView alloc] init];
     [self addSubview:self.headImageV];
     
-    
     self.userNameL = [[UILabel alloc] init];
+    self.userNameL.textColor = [UIColor whiteColor];
+    self.userNameL.textAlignment = 1;
+    self.userNameL.font = kFont(17);
     [self addSubview:self.userNameL];
     
+    // -----**************-------
+    self.moneyView = [[UIView alloc] init];
+    self.moneyView.backgroundColor = UIColorFromRGBA(0, 0, 0, 0.1);
+    [self addSubview:self.moneyView];
+    
     self.pingtaiL = [[UILabel alloc] init];
-    [self addSubview:self.pingtaiL];
+    self.pingtaiL.textColor = [UIColor whiteColor];
+    self.pingtaiL.textAlignment = 0;
+    self.pingtaiL.font = kFont(15);
+    [self.moneyView addSubview:self.pingtaiL];
+    
     self.restCoinL = [[UILabel alloc] init];
-    [self addSubview:self.restCoinL];
+    self.restCoinL.textColor = [UIColor whiteColor];
+    self.restCoinL.textAlignment = 2;
+    self.restCoinL.font = kFont(15);
+    [self.moneyView addSubview:self.restCoinL];
     
-    for (UILabel *lab in self.subviews) {
-        if ([lab isKindOfClass:[UILabel class]]) {
-            lab.textColor = [UIColor whiteColor];
-            lab.textAlignment = 1;
-            lab.font = kFont(15);
-        }
-    }
-    
+    // -----**************-------
     if([BaseUserTool getToken]){
-        self.headImageV.image = [UIImage imageNamed:@"mine_headImage"];
+        self.headImageV.image = [UIImage imageNamed:@"logo"];
         self.userNameL.text = @"斗宝商城";
         self.pingtaiL.text = @"平台币可用余额";
         self.restCoinL.text = @"0.00";
@@ -89,9 +95,10 @@
 }
 - (void)layoutSubviews
 {
+    CGFloat margin = 15 *kScale;
     self.bgImageV.frame = self.frame;
     
-    self.headImageV.frame = CGRectMake(0, 25 *kScale, 70 *kScale, 70 *kScale);
+    self.headImageV.frame = CGRectMake(0, 50 *kScale, 70 *kScale, 70 *kScale);
     self.headImageV.centerX = self.center.x;
     self.headImageV.clipsToBounds = YES;
     self.headImageV.layer.cornerRadius = self.headImageV.bounds.size.width/2.0;
@@ -99,11 +106,11 @@
     self.userNameL.frame = CGRectMake(0, CGRectGetMaxY(self.headImageV.frame) + 5, kScreenWidth *0.5, 30 *kScale);
     self.userNameL.centerX = self.center.x;
     
-    self.pingtaiL.frame = CGRectMake(0, CGRectGetMaxY(self.userNameL.frame) +5, kScreenWidth *0.5, 30 *kScale);
-    self.pingtaiL.centerX = self.center.x;
+    self.moneyView.frame = CGRectMake(0, self.height - 49 *kScale, self.width, 49 *kScale);
     
-    self.restCoinL.frame = CGRectMake(0, CGRectGetMaxY(self.pingtaiL.frame), kScreenWidth *0.6, 30 *kScale);
-    self.restCoinL.centerX = self.center.x;
+    self.pingtaiL.frame = CGRectMake(margin, 0, self.width *0.5 -margin, self.moneyView.height);
+    
+    self.restCoinL.frame = CGRectMake(self.width *0.5, 0, self.width *0.5 - margin, self.moneyView.height);
 }
 
 - (void)setCoinStr:(NSString *)coinStr

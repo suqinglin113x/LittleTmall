@@ -30,13 +30,17 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
    
     [self loadMineData];
-    
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.navigationItem.title = @"我的";
 #warning 暂存一份token
     DBLoginModel *model = [DBLoginModel new];
@@ -125,9 +129,10 @@
 - (UITableView *)tab
 {
     if (_tab == nil) {
-        _tab = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - kTabBarHeigth - kNavBarAndStatusBarHeight)];
+        _tab = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - kTabBarHeigth)];
         _tab.showsVerticalScrollIndicator = NO;
         [self.view addSubview:_tab];
+        _tab.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
     }
     return _tab;
 }
@@ -146,6 +151,7 @@
     }
     return _mineTopView;
 }
+
 
 - (DBMineBottomView *)mineBottomView
 {

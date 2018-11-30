@@ -31,8 +31,8 @@
     UIButton *tickImgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:tickImgBtn];
     self.tickImgBtn = tickImgBtn;
-    [tickImgBtn setImage:[UIImage imageNamed:@"circle_nosel"] forState:UIControlStateNormal];
-    [tickImgBtn setImage:[UIImage imageNamed:@"circle_sel"] forState:UIControlStateSelected];
+    [tickImgBtn setImage:[UIImage imageNamed:@"CellButton"] forState:UIControlStateNormal];
+    [tickImgBtn setImage:[UIImage imageNamed:@"CellButtonSelected"] forState:UIControlStateSelected];
     [tickImgBtn addTarget:self action:@selector(chooseAll:) forControlEvents:UIControlEventTouchUpInside];
     // 全选
     UIButton *tickAllBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -40,35 +40,35 @@
     self.tickAllBtn = tickAllBtn;
     tickAllBtn.titleLabel.font = kFont(13);
     [tickAllBtn setTitle:@"全选(0)" forState:UIControlStateNormal];
-//    [tickAllBtn setTitle:@"全选(100)" forState:UIControlStateNormal];
-    [tickAllBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [tickAllBtn setTitleColor:kTextColor forState:UIControlStateNormal];
     [tickAllBtn addTarget:self action:@selector(chooseAll:) forControlEvents:UIControlEventTouchUpInside];
    
     // 总钱
     UILabel *allMoneyL = [[UILabel alloc] init];
     [self addSubview:allMoneyL];
     self.allMoneyL = allMoneyL;
-    allMoneyL.text = @"¥100";
+    allMoneyL.text = @"¥0.00";
     allMoneyL.textAlignment = 0;
-    allMoneyL.textColor = [UIColor blackColor];
+    allMoneyL.textColor = kMainColor;
     allMoneyL.font = kFont(14);
     
     // 编辑
     UIButton *editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:editBtn];
     self.editBtn = editBtn;
-    editBtn.titleLabel.font = kFont(13);
+    editBtn.titleLabel.font = kFont(12);
     [editBtn setTitle:@"编辑" forState:UIControlStateNormal];
     [editBtn setTitle:@"完成" forState:UIControlStateSelected];
-    [editBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [editBtn setTitleColor:kTextColor forState:UIControlStateNormal];
     [editBtn addTarget:self action:@selector(editBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     // 去结算
     UIButton *buyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:buyBtn];
     self.buyBtn = buyBtn;
-    buyBtn.titleLabel.font = kFont(13);
-    buyBtn.backgroundColor = kMainColor;
+    buyBtn.titleLabel.font = kFont(14);
+    buyBtn.layer.cornerRadius = 4*kScale;
+    [buyBtn az_setGradientBackgroundWithColors:@[kMainBeginColor, kMainEndColor] locations:nil startPoint:CGPointMake(0,0) endPoint:CGPointMake(1, 0)];
     [buyBtn setTitle:@"去结算" forState:UIControlStateNormal];
 //    [buyBtn setTitle:@"删除所选" forState:UIControlStateSelected];
     [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -123,35 +123,52 @@
     self.buyBtn.selected = btn.selected;
     if (btn.selected) {
         [self.buyBtn setTitle:@"删除所选" forState:UIControlStateNormal];
-        
+        self.allMoneyL.hidden = YES;
+        [self.tickAllBtn setTitle:@"全选(0)" forState:UIControlStateNormal];
     } else {
         [self.buyBtn setTitle:@"去结算" forState:UIControlStateNormal];
+        self.allMoneyL.hidden = NO;
     }
     if (self.editBlock) {
         self.editBlock(btn.selected);
     }
-    DBLog(@"编辑商品");
+    DBLog(@"编辑、完成商品");
 }
 
+/** 删除or结算*/
 - (void)buyBtnClick:(UIButton *)btn
 {
-    if (self.buyBtn.selected) {
-        
-        DBLog(@"删除所选");
-        // 去删除
-        
-    } else {
-        DBLog(@"结算");
+    if (self.buyOrDelBtnBlock) {
+        self.buyOrDelBtnBlock(btn.selected);
     }
     
 }
 
 #pragma mark -- setting --
-- (void)setDataArr:(NSArray *)dataArr
+- (void)setResultDelArr:(NSArray *)resultDelArr
 {
-    _dataArr = dataArr;
-    [self.tickAllBtn setTitle:[NSString stringWithFormat:@"全选(%lu)", (unsigned long)dataArr.count] forState:UIControlStateNormal];
-    self.allMoneyL.text = [NSString stringWithFormat:@"¥%d", dataArr.count];
+    _resultDelArr = resultDelArr;
+    [self.tickAllBtn setTitle:[NSString stringWithFormat:@"全选(%lu)", (unsigned long)resultDelArr.count] forState:UIControlStateNormal];
+}
+
+- (void)setCartModel:(DBCartModel *)cartModel
+{
+    if (cartModel == nil) {
+        self.tickImgBtn.selected = self.tickAllBtn.selected = NO;
+        [self.tickAllBtn setTitle:@"全选(0)" forState:UIControlStateNormal];
+        self.allMoneyL.text = @"¥0";
+        return;
+    }
+    
+    _cartModel = cartModel;
+    if(cartModel.cartTotalModel.goodsCount.intValue == cartModel.cartTotalModel.checkedGoodsCount.intValue) {
+        self.tickImgBtn.selected = YES;
+    } else {
+        self.tickImgBtn.selected = NO;
+        
+    }
+    [self.tickAllBtn setTitle:[NSString stringWithFormat:@"全选(%@)", cartModel.cartTotalModel.checkedGoodsCount] forState:UIControlStateNormal];
+    self.allMoneyL.text = [NSString stringWithFormat:@"¥%.2f", cartModel.cartTotalModel.checkedGoodsAmount.floatValue];
     
 }
 @end

@@ -21,6 +21,12 @@
 
 @implementation DBAddressListController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self loadAddressData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -30,18 +36,16 @@
     self.tableView.height -= self.bottomBuildBtn.height;
     [self.view addSubview:self.tableView];
     self.tableView.tableFooterView = [UIView new];
-    
-    
-    [self loadAddressData];
+  
 }
 
 - (void)loadAddressData
 {
     [BaseNetTool GetAddressListParams:nil block:^(NSMutableArray<DBAddressModel *> *modelArr, NSError *error) {
-        if (!modelArr) {
+        if (modelArr.count == 0) {
             [self.tableView showNoDataViewImg:@"address" hintText:@"快去添加地址吧~" btnTitle:nil];
         } else {
-            
+            [self.tableView hideNoDataView];
             self.addressArr = modelArr;
             [self.tableView reloadData];
         }
@@ -63,6 +67,7 @@
     tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     cell.delegate = self;
     cell.addressModel = self.addressArr[indexPath.row];
+    cell.isFromCart = self.isFromCart;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -71,28 +76,39 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DBAddressBuildController *buildVC = [DBAddressBuildController new];
-    buildVC.addressModel = self.addressArr[indexPath.row];
-    buildVC.saveAddressBlock = ^(DBAddressModel *model) {
-        [self.addressArr addObject:model];
-        [self.tableView reloadData];
-    };
-    [self.navigationController pushViewController:buildVC animated:YES];
+    if (self.isFromCart) { // 来自购物车
+#warning codeing here 处理地址回调
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        DBAddressBuildController *buildVC = [DBAddressBuildController new];
+        buildVC.addressModel = self.addressArr[indexPath.row];
+        buildVC.saveAddressBlock = ^(DBAddressModel *model) {
+            [self.addressArr addObject:model];
+            [self.tableView reloadData];
+        };
+        [self.navigationController pushViewController:buildVC animated:YES];
+    }
+   
 }
 
 #pragma mark -- DBAddressCellDelegate --
-- (void)deleAddress:(DBAddressModel *)model
+- (void)deleOrEditAddress:(DBAddressModel *)model
 {
-//    [self.addressArr removeObject:model];
-//    [self.tableView reloadData];
-    [self loadAddressData];
+    if (self.isFromCart) {
+        DBAddressBuildController *buildVC = [DBAddressBuildController new];
+        buildVC.addressModel = model;
+        [self.navigationController pushViewController:buildVC animated:YES];
+    } else {
+        
+        [self loadAddressData];
+    }
 }
 
 #pragma mark -- action --
 - (void)buildNewAddress
 {
     DBAddressBuildController *buildVC = [DBAddressBuildController new];
-    buildVC.isNewBuild = YES;
+//    buildVC.isNewBuild = YES;
     buildVC.saveAddressBlock = ^(DBAddressModel *model) {
         [self.addressArr addObject:model];
         [self.tableView reloadData];
@@ -115,7 +131,7 @@
 {
     if (_bottomBuildBtn == nil) {
         _bottomBuildBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, kScreenHeight -kNavBarAndStatusBarHeight - 50 *kScale, kScreenWidth, 50 *kScale)];
-        _bottomBuildBtn.backgroundColor = kMainColor;
+        [_bottomBuildBtn az_setGradientBackgroundWithColors:@[kMainBeginColor, kMainEndColor] locations:nil startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1, 0)];
         [_bottomBuildBtn.titleLabel setFont:kFont(16)];
         [_bottomBuildBtn setTitle:@"新建" forState:UIControlStateNormal];
         [_bottomBuildBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

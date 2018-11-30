@@ -9,5 +9,6 @@
 #import "DBBaseViewController.h"
 
 @interface DBAddressListController : DBBaseViewController
-
+/** 是否来自购物车里订单页面*/
+@property (nonatomic, assign) BOOL isFromCart;
 @end

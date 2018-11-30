@@ -50,7 +50,6 @@
     [BaseNetTool GetOrderListParams:dict block:^(NSArray *orderLists, NSError *error) {
         if(self->_page == 1) {
             if (orderLists.count == 0) {
-                return ;
             } else {
                 [self.orderLists addObjectsFromArray:orderLists];
                 [self.tableView hideNoDataView];
@@ -61,11 +60,14 @@
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
             } else {
                 [self.orderLists addObjectsFromArray:orderLists];
+                [self.tableView.mj_footer endRefreshing];
             }
         }
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
     }];
+   
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
